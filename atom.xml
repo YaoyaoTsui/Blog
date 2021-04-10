@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://Tsui_Blog.github.io</id>
+    <id>https://Blog.github.io</id>
     <title>Tsui</title>
-    <updated>2021-04-10T15:30:30.727Z</updated>
+    <updated>2021-04-10T15:53:41.701Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://Tsui_Blog.github.io"/>
-    <link rel="self" href="https://Tsui_Blog.github.io/atom.xml"/>
+    <link rel="alternate" href="https://Blog.github.io"/>
+    <link rel="self" href="https://Blog.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://Tsui_Blog.github.io/images/avatar.png</logo>
-    <icon>https://Tsui_Blog.github.io/favicon.ico</icon>
+    <logo>https://Blog.github.io/images/avatar.png</logo>
+    <icon>https://Blog.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Tsui</rights>
 </feed>
