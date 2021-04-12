@@ -1,20 +1,185 @@
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta name="description" content="一、环境支持
+
+
+CentOS 7 内存至少2G swap建议3G 磁盘大约40G
+
+
+Oracle安装包：版本11gR2
+linux.x64_11gR2_database_1of2.zip linux.x64_11gR2_database..." />
+    <meta name="keywords" content="Oracle" />
+    <link rel="stylesheet" href="https://YaoyaoTsui.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://YaoyaoTsui.github.io/styles/main.css">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/vs2015.min.css">
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://YaoyaoTsui.github.io/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-    <link rel="stylesheet" href="https://YaoyaoTsui.github.io/styles/main.css">
-    <meta name="description" content="不要假装努力，结果不会陪你演戏！" />
-    <link rel="stylesheet" href="https://YaoyaoTsui.github.io/media/css/font-awesome.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
     <title>Tsui</title>
+    
+    <style>
+        .markdownIt-TOC {
+            margin-left: 28%;
+            padding-left: 2px;
+            width: 80%;
+        }
+
+        .markdownIt-TOC li {
+            padding-left: 8%;
+        }
+    </style>
+    
 </head>
+
 <body>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="domainname" style="display:none">https://YaoyaoTsui.github.io</div>
     <!-- 响应式布局，针对PC端内容显示 -->
     <div id="content">
-        <div class="nav-large">
+        <div>
+            <div id="bar">
+                <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/bootstrap.min.css">
+</head>
+<style>
+  .navmobile {
+    z-index: 15;
+    max-height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .navbar {
+      max-width: 100vw;
+    }
+  }
+
+  @media screen and (max-width:1200px) and (min-width: 768px) {
+    @media (min-width: 768px) {
+      .navbar-nav {
+        float: right;
+        margin: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    .mbapspan {
+      padding: 0;
+    }
+  }
+</style>
+<div class="pjaxloading"  onclick="pjaxloadingClose()">
+  <div class="loadingbackground"></div>
+  <div id="loading">
+    <div class="loading">
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
+        aria-expanded="false" id="barbutton">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a data-pjax class="navbar-brand" href="https://YaoyaoTsui.github.io">Tsui&nbsp;&nbsp;|</a>
+      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
+          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="barmenu">
+      <ul class="nav navbar-nav">
+        
+        
+        <li>
+          <a data-pjax href="/">
+            Home
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/archives">
+            Archieves
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/tags">
+            Tags
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/post/about">
+            About
+          </a>
+        </li>
+        
+        
+        
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+  <script>
+    let btstate = false;
+    var bt = $("#barbutton");
+    var bm = $("#barmenu");
+    bt.click(function () {
+      dropdown();
+    })
+    function dropdown() {
+      console.log(btstate);
+      //下拉
+      if (btstate == false) {
+        bt.removeClass("collapsed");
+        bt.attr("aria-expanded", "true");
+        bm.attr("aria-expanded", "true")
+        bm.fadeIn(700);
+        btstate = true;
+      }
+      else {
+        bt.addClass("collapsed");
+        bt.attr("aria-expanded", "false");
+        bm.removeClass("in");
+        bm.hide();
+        bm.attr("aria-expanded", "false");
+        btstate = false;
+      }
+    }
+  </script> 
+            </div>
             <div class="row">
                 <div class="side"><head>
     <link rel="stylesheet" href="https://YaoyaoTsui.github.io/media/css/bootstrap.min.css">
@@ -801,136 +966,6 @@
         }
     </script>
     </div>
-                <div class="mobilebar"><head>
-  <!-- 引入Bootstrap核心样式文件 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/bootstrap.min.css">
-</head>
-<style>
-  .navmobile {
-    z-index: 15;
-    max-height: 40vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-
-  @media screen and (max-width: 1200px) {
-    .navbar {
-      max-width: 100vw;
-    }
-  }
-
-  @media screen and (max-width:1200px) and (min-width: 768px) {
-    @media (min-width: 768px) {
-      .navbar-nav {
-        float: right;
-        margin: 0;
-      }
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    .mbapspan {
-      padding: 0;
-    }
-  }
-</style>
-<div class="pjaxloading"  onclick="pjaxloadingClose()">
-  <div class="loadingbackground"></div>
-  <div id="loading">
-    <div class="loading">
-    </div>
-  </div>
-</div>
-<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
-        aria-expanded="false" id="barbutton">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a data-pjax class="navbar-brand" href="https://YaoyaoTsui.github.io">Tsui&nbsp;&nbsp;|</a>
-      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
-          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="barmenu">
-      <ul class="nav navbar-nav">
-        
-        
-        <li>
-          <a data-pjax href="/">
-            Home
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/archives">
-            Archieves
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/tags">
-            Tags
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/post/about">
-            About
-          </a>
-        </li>
-        
-        
-        
-          
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-  <script>
-    let btstate = false;
-    var bt = $("#barbutton");
-    var bm = $("#barmenu");
-    bt.click(function () {
-      dropdown();
-    })
-    function dropdown() {
-      console.log(btstate);
-      //下拉
-      if (btstate == false) {
-        bt.removeClass("collapsed");
-        bt.attr("aria-expanded", "true");
-        bm.attr("aria-expanded", "true")
-        bm.fadeIn(700);
-        btstate = true;
-      }
-      else {
-        bt.addClass("collapsed");
-        bt.attr("aria-expanded", "false");
-        bm.removeClass("in");
-        bm.hide();
-        bm.attr("aria-expanded", "false");
-        btstate = false;
-      }
-    }
-  </script> 
-                </div>
                 
                 <div id="tab1" class="tab">
                     <div class="bars">
@@ -942,19 +977,345 @@
                 </div>
                 <div class="col-md-1 col-lg-3"></div>
                 <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
-                    <body>
-    <div id="friendscontainermobile">
-        
-    </div>
+                    <link rel="stylesheet" href="https://YaoyaoTsui.github.io/media/css/font-awesome.css">
 
-    <div id="friendscontainer">
-        
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow postpadding" style="padding-bottom: 0;">
+            
+            <div class="postdetailimg">
+                <img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/linux1.jpg" class="postimage" style="cursor:auto">
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2021-04-12</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 10 min read</div>
+                <div class="posttag">
+                    
+                    <a data-pjax href="https://YaoyaoTsui.github.io/tag/Oracle/" class="postlink">
+                        <i class="fa fa-tag"></i> Oracle
+                    </a>
+                    
+                </div>
+            </div>
+            
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2 id="ptitle">CentOS 7装Oracle11gR2</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://YaoyaoTsui.github.io/post/centos-7-zhuang-oracle11gr2/</div>
+                <div id="rootaddr" style="display:none">https://YaoyaoTsui.github.io</div>
+                <span id="hotnum">
+                    <h4><i class="fa fa-eye" aria-hidden="true" style="color: #FF8C00;"></i>&nbsp;&nbsp;热度</i>: <i
+                            class="hotnum">loading...</i></h4>
+                </span>
+            </div>
+            <div class="text ">
+                <h1 id="一-环境支持">一、环境支持</h1>
+<ol>
+<li>
+<p>CentOS 7 内存至少2G swap建议3G 磁盘大约40G</p>
+</li>
+<li>
+<p>Oracle安装包：版本11gR2</p>
+<p>linux.x64_11gR2_database_1of2.zip linux.x64_11gR2_database_2of2.zip</p>
+</li>
+</ol>
+<h1 id="二-安装环境准备">二、安装环境准备</h1>
+<h2 id="21-创建运行racle数据库的系统用户和用户组">2.1 创建运行racle数据库的系统用户和用户组</h2>
+<pre><code class="language-shell">[snoopy@localhost ~]$ su root　　#切换到root
+Password: 
+[root@localhost snoopy]# groupadd oinstall　　#创建用户组oinstall
+[root@localhost snoopy]# groupadd dba　　#创建用户组dba
+[root@localhost snoopy]# useradd -g oinstall -g dba -m oracle　　#创建oracle用户，并加入到oinstall和dba用户组
+[root@localhost snoopy]# passwd oracle　　#设置用户oracle的登陆密码，不设置密码，在CentOS的图形登陆界面没法登陆
+Changing password for user oracle.
+New password: 　　# 密码
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 　　# 确认密码
+passwd: all authentication tokens updated successfully.
+[root@localhost snoopy]# id oracle # 查看新建的oracle用户
+uid=1001(oracle) gid=1002(dba) groups=1002(dba)
+</code></pre>
+<blockquote>
+<p>为啥要创建oinstall用户组及dba组？ 参考：http://www.oracle.com/technetwork/cn/articles/hunter-rac11gr2-iscsi-2-092412-zhs.html#13</p>
+</blockquote>
+<p>理论上单例按照需要3种用户组，实际只建两个oinstall和dba，后面再安装oracle数据库的时候把OSOPER组也设置是dba组。</p>
+<pre><code class="language-shell">a.oracle 清单组（一般为oinstall):
+ OINSTALL 组的成员被视为 Oracle 软件的“所有者”，拥有对 Oracle 中央清单 (oraInventory) 的写入权限。在一个 Linux 系统上首次安装 Oracle 软件时， OUI 会创建 /etc/oraInst.loc 文件。该文件指定 Oracle 清单组的名称（默认为 oinstall）以及 Oracle 中央清单目录的路径。
+b.数据库管理员（OSDBA，一般为 dba）:
+ OSDBA 组的成员可通过操作系统身份验证使用 SQL 以 SYSDBA 身份连接到一个 Oracle 实例。该组的成员可执行关键的数据库管理任务，如创建数据库、启动和关
+ 闭实例。该组的默认名称为dba。SYSDBA 系统权限甚至在数据库未打开时也允许访问数据库实例。对此权限的控制完全超出了数据库本身的范围。不要混淆 SYSDBA 
+ 系统权限与数据库角色 DBA。DBA 角色不包括 SYSDBA 或 SYSOPER 系统权限。
+c.数据库操作员组（OSOPER，一般为 oper）:
+ OSOPER 组的成员可通过操作系统身份验证使用 SQL 以 SYSOPER 身份连接到一个 Oracle 实例。这个可选组的成员拥有一组有限的数据库管理权限，如管理和运行备份。
+ 该组的默认名称为oper。SYSOPER 系统权限甚至在数据库未打开时也允许访问数据库实例。对此权限的控制完全超出了数据库本身的范围。要使用该组，选择 Advanced 安装类型来安装 Oracle 数据库软件。 
+</code></pre>
+<h2 id="22-创建oracle数据库安装目录">2.2 创建oracle数据库安装目录</h2>
+<pre><code class="language-shell">[snoopy@localhost ~]$ su root
+Password: 
+[root@localhost snoopy]# mkdir -p /data/oracle　　# oracle数据库安装目录
+[root@localhost snoopy]# mkdir -p /data/oraInventory　　# oracle数据库配置文件目录
+[root@localhost snoopy]# mkdir -p /data/database　　# oracle数据库软件包解压目录
+[root@localhost snoopy]# cd /data
+[root@localhost data]# ls　　#创建完毕检查一下（强迫症）
+database  oracle  oraInventory
+[root@localhost data]# chown -R oracle:oinstall /data/oracle　　#设置目录所有者为oinstall用户组的oracle用户
+[root@localhost data]# chown -R oracle:oinstall /data/oraInventory
+[root@localhost data]# chown -R oracle:oinstall /data/database
+</code></pre>
+<h2 id="23-修改os系统标识">2.3 修改OS系统标识</h2>
+<pre><code class="language-shell">[root@localhost ~]# cat /proc/version 
+Linux version 3.10.0-1062.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) ) #1 SMP Wed Aug 7 18:08:02 UTC 2019
+[root@localhost data]# cat /etc/redhat-release　　
+CentOS Linux release 7.7.1908 (Core) 
+[root@localhost data]# vi /etc/redhat-release
+[root@localhost data]# cat /etc/redhat-release 
+redhat-7 
+</code></pre>
+<h2 id="24-安装oracle数据库所需要的软件包">2.4 安装Oracle数据库所需要的软件包</h2>
+<pre><code class="language-shell">操作系统:Oracle Linux 7 and Red Hat Enterprise Linux 7
+The following packages (or later versions) must be installed:
+binutils-2.23.52.0.1-12.el7.x86_64 
+compat-libcap1-1.10-3.el7.x86_64 
+gcc-4.8.2-3.el7.x86_64 
+gcc-c++-4.8.2-3.el7.x86_64 
+glibc-2.17-36.el7.i686 
+glibc-2.17-36.el7.x86_64 
+glibc-devel-2.17-36.el7.i686 
+glibc-devel-2.17-36.el7.x86_64 
+ksh
+libaio-0.3.109-9.el7.i686 
+libaio-0.3.109-9.el7.x86_64 
+libaio-devel-0.3.109-9.el7.i686 
+libaio-devel-0.3.109-9.el7.x86_64 
+libgcc-4.8.2-3.el7.i686 
+libgcc-4.8.2-3.el7.x86_64 
+libstdc++-4.8.2-3.el7.i686 
+libstdc++-4.8.2-3.el7.x86_64 
+libstdc++-devel-4.8.2-3.el7.i686 
+libstdc++-devel-4.8.2-3.el7.x86_64 
+libXi-1.7.2-1.el7.i686 
+libXi-1.7.2-1.el7.x86_64 
+libXtst-1.2.2-1.el7.i686 
+libXtst-1.2.2-1.el7.x86_64 
+make-3.82-19.el7.x86_64 
+sysstat-10.1.5-1.el7.x86_64 
+</code></pre>
+<blockquote>
+<ol>
+<li>
+<p>yum install -y ksh binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel gcc gcc-c++ glibc glibc-common glibc-devel libaio libaio-devel libgcc libstdc++ libstdc++-devel make numactl sysstat libXp unixODBC unixODBC-devel</p>
+</li>
+<li>
+<p>若遇到无法安装pdksh，可以下载对应rpm包进行安装</p>
+</li>
+<li>
+<pre><code class="language-text">rpm -q binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel expat gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers libaio libaio-devel libgcc libstdc++ libstdc++-devel make pdksh sysstat unixODBC unixODBC-devel | grep &quot;not installed&quot;
+</code></pre>
+</li>
+</ol>
+</blockquote>
+<h2 id="25-关闭防火墙-关闭selinux">2.5 关闭防火墙、关闭selinux</h2>
+<pre><code class="language-shell">[root@localhost ~]# systemctl status firewalld.service # 查看防火墙状态
+[root@localhost ~]# systemctl stop firewalld.service # 关闭防火墙，防火墙先禁用，搞好之后再配置
+
+[root@localhost /]# vim /etc/selinux/config # 修改selinux配置文件
+[root@localhost /]# cat /etc/selinux/config
+ 
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+SELINUX=disabled   # 此处修改为disabled
+# SELINUXTYPE= can take one of three two values:
+#     targeted - Targeted processes are protected,
+#     minimum - Modification of targeted policy. Only selected processes are protected. 
+#     mls - Multi Level Security protection.
+SELINUXTYPE=targeted 
+
+[root@localhost ~]# setenforce 0 # 使配置生效
+</code></pre>
+<h2 id="26-修改内核参数">2.6 修改内核参数</h2>
+<pre><code class="language-shell">[root@localhost /]# vim /etc/sysctl.conf 
+[root@localhost /]# cat /etc/sysctl.conf 
+# System default settings live in /usr/lib/sysctl.d/00-system.conf.
+# To override those settings, enter new settings here, or in an /etc/sysctl.d/&lt;name&gt;.conf file
+#
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+# 添加以下参数：
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.conf.all.rp_filter = 1
+fs.file-max = 6815744 #设置最大打开文件数
+fs.aio-max-nr = 1048576
+kernel.shmall = 2097152 #共享内存的总量，8G内存设置：2097152*4k/1024/1024
+kernel.shmmax = 2147483648 #最大共享内存的段大小
+kernel.shmmni = 4096 #整个系统共享内存端的最大数
+kernel.sem = 250 32000 100 128
+net.ipv4.ip_local_port_range = 9000 65500 #可使用的IPv4端口范围
+net.core.rmem_default = 262144
+net.core.rmem_max= 4194304
+net.core.wmem_default= 262144
+net.core.wmem_max= 1048576
+使配置参数生效
+[root@localhost /]# sysctl -p
+</code></pre>
+<h2 id="27-对oracle用户设置限制提高软件运行性能">2.7 对oracle用户设置限制，提高软件运行性能</h2>
+<pre><code class="language-shell">[root@localhost /]# vim /etc/security/limits.conf 
+
+# 添加以下配置：
+oracle soft nproc 2047
+oracle hard nproc 16384
+oracle soft nofile 1024
+oracle hard nofile 65536  
+</code></pre>
+<h2 id="28-配置用户的环境变量">2.8 配置用户的环境变量</h2>
+<pre><code class="language-shell">[root@localhost /]# vim /home/oracle/.bash_profile 
+# 添加以下配置： 
+export ORACLE_BASE=/data/oracle #oracle数据库安装目录
+export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1 #oracle数据库路径
+export ORACLE_SID=orcl #oracle启动数据库实例名
+export ORACLE_TERM=xterm #xterm窗口模式安装
+export PATH=$ORACLE_HOME/bin:/usr/sbin:$PATH #添加系统环境变量
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib #添加系统环境变量
+export LANG=C #防止安装过程出现乱码
+export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK  #设置Oracle客户端字符集，必须与Oracle安装时设置的字符集保持一致，如：ZHS16GBK，否则出现数据导入导出中文乱码问题
+
+
+# 使上述配置生效
+[root@localhost /]# source /home/oracle/.bash_profile 
+</code></pre>
+<h2 id="29-解压安装包">2.9 解压安装包</h2>
+<pre><code class="language-shell">[oracle@localhost /]$ cd /usr/local/src　　#进入/usr/local/src目录
+[oracle@localhost src]$ ls	# 提前准备好的安装包文件
+linux.x64_11gR2_database_1of2.zip  linux.x64_11gR2_database_2of2.zip
+[oracle@localhost src]$ unzip linux.x64_11gR2_database_1of2.zip -d /data/database/　　#解压
+(省略...)
+[oracle@localhost src]$ unzip linux.x64_11gR2_database_2of2.zip -d /data/database/　　#解压
+(省略...)
+[oracle@localhost src]$ su root
+Password: 
+[root@localhost src]# chown -R oracle:oinstall /data/database/database/
+</code></pre>
+<h1 id="三-安装oracle图形化界面安装">三、安装Oracle（图形化界面安装）</h1>
+<h2 id="31-图形界面登陆oracle用户">3.1 图形界面登陆oracle用户：</h2>
+<h2 id="32-启动oralce安装">3.2 启动oralce安装</h2>
+<pre><code class="language-shell">[oracle@localhost ~]$ cd /data/database/database/
+[oracle@localhost ~]$ ./runInstaller
+</code></pre>
+<blockquote>
+<p>会弹出Oracle的安装图形化界面</p>
+</blockquote>
+<p>安装时遇到问题：</p>
+<ol>
+<li>swap空间不够问题</li>
+</ol>
+<blockquote>
+<p>要求大约在2.67G，实际上只有2G</p>
+</blockquote>
+<pre><code class="language-shell">[root@localhost ~]# free -m # 查看当前情况
+[root@localhost ~]# dd if=/dev/zero of=/home/swap bs=1024 count=1024000 # 由2048M扩展到3048M
+[root@localhost ~]# swapon /home/swap
+</code></pre>
+<ol start="2">
+<li>检查package</li>
+</ol>
+<p>之前没有安装的，此时安装，多检查几次</p>
+<p>3.3 配置监听</p>
+<pre><code class="language-shell">[oracle@localhost ~]$ netca 
+
+Oracle Net Services Configuration:
+Configuring Listener:LISTENER
+Listener configuration complete.
+Oracle Net Listener Startup:
+    Running Listener Control: 
+      /data/oracle/product/11.2.0/db_1/bin/lsnrctl start LISTENER
+    Listener Control complete.
+    Listener started successfully.
+Oracle Net Services configuration successful. The exit code is 0
+</code></pre>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>Tsui</li>
+            <li><strong>原文链接：</strong>https://YaoyaoTsui.github.io/post/centos-7-zhuang-oracle11gr2/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        <div id="otherpost">
+            
+            
+            <a data-pjax class="next-post-pc" href="https://YaoyaoTsui.github.io/post/centos7重启某服务失败/"  style="color: black;">
+                <div id="npcontainer">
+                    
+                    
+                    <img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/linux3-736x457.jpg" style="width: 100%;" class="opimg">
+                    
+                    
+                    <h4 class="optitle"> CentOS 7 重启某个服务报错</h4>
+                </div>
+            </a>
+            <div class="next-post">
+                下一篇 <a  data-pjax href="https://YaoyaoTsui.github.io/post/centos7重启某服务失败/"> CentOS 7 重启某个服务报错</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- 弹窗 -->
+    <div id="myModal" class="modal">
+        <img class="modal-content" id="img01">
     </div>
 </body>
-                <div id="comment" class="fcl" style="background: white;">
-                    <div class="commentcontainer">
-                        
-                        <style>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+                    <div class="toc-container">
+                        <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E7%8E%AF%E5%A2%83%E6%94%AF%E6%8C%81">一、环境支持</a></li>
+<li><a href="#%E4%BA%8C-%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87">二、安装环境准备</a>
+<ul>
+<li><a href="#21-%E5%88%9B%E5%BB%BA%E8%BF%90%E8%A1%8Cracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84">2.1 创建运行racle数据库的系统用户和用户组</a></li>
+<li><a href="#22-%E5%88%9B%E5%BB%BAoracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95">2.2 创建oracle数据库安装目录</a></li>
+<li><a href="#23-%E4%BF%AE%E6%94%B9os%E7%B3%BB%E7%BB%9F%E6%A0%87%E8%AF%86">2.3 修改OS系统标识</a></li>
+<li><a href="#24-%E5%AE%89%E8%A3%85oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85">2.4 安装Oracle数据库所需要的软件包</a></li>
+<li><a href="#25-%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99-%E5%85%B3%E9%97%ADselinux">2.5 关闭防火墙、关闭selinux</a></li>
+<li><a href="#26-%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8%E5%8F%82%E6%95%B0">2.6 修改内核参数</a></li>
+<li><a href="#27-%E5%AF%B9oracle%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE%E9%99%90%E5%88%B6%E6%8F%90%E9%AB%98%E8%BD%AF%E4%BB%B6%E8%BF%90%E8%A1%8C%E6%80%A7%E8%83%BD">2.7 对oracle用户设置限制，提高软件运行性能</a></li>
+<li><a href="#28-%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">2.8 配置用户的环境变量</a></li>
+<li><a href="#29-%E8%A7%A3%E5%8E%8B%E5%AE%89%E8%A3%85%E5%8C%85">2.9 解压安装包</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E5%AE%89%E8%A3%85oracle%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2%E5%AE%89%E8%A3%85">三、安装Oracle（图形化界面安装）</a>
+<ul>
+<li><a href="#31-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E7%99%BB%E9%99%86oracle%E7%94%A8%E6%88%B7">3.1 图形界面登陆oracle用户：</a></li>
+<li><a href="#32-%E5%90%AF%E5%8A%A8oralce%E5%AE%89%E8%A3%85">3.2 启动oralce安装</a></li>
+</ul>
+</li>
+</ul>
+
+                    </div>
+                    <div class="tog">
+                        <div class="toggleContainer">
+                            <div class="toggle">
+                                <i class="fas fa-angle-double-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="comment" class="comment" style="background: white">
+                        <div class="commentcontainer">
+                            
+                            <style>
     @media screen and (min-width: 1300px) {
         .veditor::placeholder {
             color: #b3b3b3;
@@ -1000,12 +1361,12 @@
     </script>
 
 </body>
-                        <div class="clear"></div>
-                        
+                            <div class="clear"></div>
+                            
+                        </div>
                     </div>
                 </div>
-                </div>
-                <div class="col-md-1 col-lg-1"></div>
+                <div class="col-md-1 col-lg-2"></div>
                 <div id="bg">
                 </div>
             </div>
@@ -1074,33 +1435,95 @@
     }
 </script>
         
-
     </div>
     
-    <div class="tog">
-        <div class="toggleContainer">
-            <div class="toggle">
-                <i class="fas fa-angle-double-up"></i>
-            </div>
-        </div>
+    <div id="bgchoice" style="display: none">link
     </div>
-    <div id="bgchoice" style="display: none">link</div>
     
     <div id="bgurl" style="display:none">https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/bgimage.jpg</div>
     
-    </div>
-    <div id="landlord">
-        <div class="message" style="opacity:0"></div>
-        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-    </div>
-    <div id="domainname" style="display:none">https://YaoyaoTsui.github.io</div>
 </body>
+<script>
+    var img = $("img");
+    for (var i = 0; i < img.length; i++) {
+        if (img.eq(i).attr("class") == undefined) {
+            img.eq(i).attr("class", "lazyload");
+            var imgsrc = img.eq(i).attr("src");
+            img.eq(i).attr("data-original", imgsrc);
+            img.eq(i).attr("src", "");
+            img.eq(i).hide();
+        }
+    }
 
-</html>
+    function refreshImg(imgclass) {
+        // 获取弹窗
+        var modal = document.getElementById('myModal');
+
+        // 获取图片插入到弹窗 - 使用 "alt" 属性作为文本部分的内容
+        var img = document.getElementsByClassName(imgclass);
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        for (var i in img) {
+            img[i].onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        }
+
+        // 图片关闭
+        var modalImg = document.getElementById('img01');
+        // 鼠标点击模型外区域关闭登录框
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            if (menupos == 'left')
+                return true;
+            if (event.target == social) {
+                social.style.display = "none";
+            }
+        }
+    }
+
+</script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script>
+    //寻找所有code标签，加复制按钮鸭！(行内代码除外)
+    var codes = document.getElementsByTagName('code');
+    if (codes.length) {
+        for (var i = 0; i < codes.length; i++) {
+            //高度/行高=文本行数
+            // var rowNum=Math.round(codes[i].height()/parseFloat(codes[i].css('line-height')));
+            // console.log("当前有"+rowNum+"行");
+            var code_id = "code_id_" + i;
+            codes[i].setAttribute("id", code_id);
+            var ci = "#" + code_id;
+            var codedot = $(ci);
+            var rowNum = Math.round(codedot.height() / parseFloat(codedot.css('line-height')));
+            if (rowNum <= 1) continue;
+            var btn = document.createElement("button");
+            btn.setAttribute("class", "copybt");
+            btn.setAttribute("data-clipboard-target", "#" + code_id);
+            btn.innerHTML = '复制代码';
+            codes[i].parentNode.insertBefore(btn, codes[i]);
+        }
+    };
+    var cop = new ClipboardJS('.copybt');
+    cop.on('success', function (e) {
+        e.trigger.innerHTML = "复制成功~"
+        e.trigger.style.background = "#894e54"
+        e.clearSelection();
+    });
+    cop.on('error', function (e) {
+        e.clearSelection();
+    });
+</script>
 
 <script type="text/javascript">
     var message_Path = '/live2d/'
-    var home_Path = document.getElementById("domainname").innerHTML+"/"; //此处修改为你的域名，必须带斜杠
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
 </script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/live2d.js"></script>
 <script type="text/javascript" src="https://YaoyaoTsui.github.io/media/live2d/js/message.js"></script>
@@ -1108,19 +1531,138 @@
     loadlive2d("live2d", "https://YaoyaoTsui.github.io/media/live2d/assets/tororo.model.json");
 </script>
 
-
 <script>
-        var bgchoice=$('#bgchoice').html();
-        var bg = $('#bg');
-        var bgurl = document.getElementById("bgurl").innerHTML;
-        if(bgchoice=='default')
-            for (var i = 0; i < 3; i++)
-                bgurl = bgurl.replace("\\", "/");
-        bg.css("background", "url('" + bgurl + "')");
-
-        window.onload = function(){
-            aplayerbtnInit();
-        }
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
 </script>
 
-    <script src="https://YaoyaoTsui.github.io/media/js/index.js"></script>
+<script>
+    var bgchoice = $('#bgchoice').html();
+    var bg = $('#bg');
+    var bgurl = document.getElementById("bgurl").innerHTML;
+    if (bgchoice == 'default')
+        for (var i = 0; i < 3; i++)
+            bgurl = bgurl.replace("\\", "/");
+    bg.css("background", "url('" + bgurl + "')");
+</script>
+
+
+<script src="https://YaoyaoTsui.github.io/media/js/index.js"></script>
+
+
+
+<!-- 动态更改上(下)一篇博客图片框长宽 -->
+<script>
+    npcontainer = document.querySelector('#npcontainer');
+    npstyle = window.getComputedStyle(npcontainer, null);
+    npwidth = npstyle.width;
+    npheight = 0.6 * Number(npwidth.replace("px", ""));
+    npheight = npheight.toString() + "px";
+    var op = $(".opimg");
+    op.css("height", npheight);
+</script>
+
+<script src="https://YaoyaoTsui.github.io/media/share/dist/Share.js"></script>
+
+<script>
+    var avatarSrc = $(".avatar").attr("src");
+    var dp = document.getElementsByClassName("describtion")[0].innerHTML;
+</script>
+
+
+<script>
+    var title = document.getElementById("texttitle").getElementsByTagName("h2");
+
+    var share = new Share('.share', {
+        title: title[0].innerHTML,
+        initialized: true,
+        //默认获取网站描述
+        description: dp,
+        //网站图片默认获取的是设置的用户头像
+        image: avatarSrc,
+        //激活的分享网站
+        sites: ["weibo", "qq", "wechat", "douban", "qzone", "facebook", "twitter", "google"],
+        //微信分享PC端会生成二维码分享,移动端如果可以唤起微信最好
+        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里扫一下二维码</p><p>便可将本文分享至朋友圈。</p>',
+        //关闭的网站分享
+        disabled: ['google', 'linkedin'],
+        wechatQrcodePosition: 'bottom'
+    });
+
+    //点击分享按钮展现出分享icons
+    var sharebtnTag = false;
+    $(".sharebtn").click(function () {
+        if (!sharebtnTag) {
+            $(".share").show();
+            sharebtnTag = true;
+        }
+        else {
+            $(".share").hide();
+            sharebtnTag = false;
+        }
+    })
+
+    var donatebtnTag = false;
+    $(".donateImg").click(function () {
+        if (!donatebtnTag) {
+            $(".donate").show();
+            donatebtnTag = true;
+        }
+        else {
+            $(".donate").hide();
+            donatebtnTag = false;
+        }
+    })
+
+    //加载后的事件同步（阅读量、移动端评论等
+    window.onload = function () {
+        getHotnum();
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);
+        document.getElementById("veditor").setAttribute("placeholder", jrsc);
+        aplayerbtnInit();
+    }
+</script>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+        function lazyload() {
+            var oLazyload = $("img.lazyload"),
+                fLazyload = function (hLazyload) {
+                    var nLazyload = $(window).height() + $(document).scrollTop();
+                    oLazyload.each(function () {
+                        $(this).offset().top < nLazyload && ($(this).trigger("appear"), oLazyload =
+                            oLazyload.not(this));
+                    }), 0 == oLazyload.length && $(window).unbind("scroll", fLazyload);
+                };
+            oLazyload.each(function () {
+                $(this).one("appear", function () {
+                    $(this).attr("src", $(this).attr("data-original"));
+                    $(this).fadeIn(500);
+                });
+            }), $(window).bind("scroll", fLazyload), fLazyload();
+        }
+        lazyload();
+        refreshImg("lazyload");
+    });
+</script>
+
+<!-- <script src="https://YaoyaoTsui.github.io/media/js/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.13.0/dist/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-live-query-min.js"></script> -->
+

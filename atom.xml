@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://YaoyaoTsui.github.io</id>
     <title>Tsui</title>
-    <updated>2021-04-12T04:28:29.900Z</updated>
+    <updated>2021-04-12T04:47:22.103Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://YaoyaoTsui.github.io"/>
     <link rel="self" href="https://YaoyaoTsui.github.io/atom.xml"/>
@@ -10,6 +10,238 @@
     <logo>https://YaoyaoTsui.github.io/images/avatar.png</logo>
     <icon>https://YaoyaoTsui.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Tsui</rights>
+    <entry>
+        <title type="html"><![CDATA[CentOS 7装Oracle11gR2]]></title>
+        <id>https://YaoyaoTsui.github.io/post/centos-7-zhuang-oracle11gr2/</id>
+        <link href="https://YaoyaoTsui.github.io/post/centos-7-zhuang-oracle11gr2/">
+        </link>
+        <updated>2021-04-12T04:41:45.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-环境支持">一、环境支持</h1>
+<ol>
+<li>
+<p>CentOS 7 内存至少2G swap建议3G 磁盘大约40G</p>
+</li>
+<li>
+<p>Oracle安装包：版本11gR2</p>
+<p>linux.x64_11gR2_database_1of2.zip linux.x64_11gR2_database_2of2.zip</p>
+</li>
+</ol>
+<h1 id="二-安装环境准备">二、安装环境准备</h1>
+<h2 id="21-创建运行racle数据库的系统用户和用户组">2.1 创建运行racle数据库的系统用户和用户组</h2>
+<pre><code class="language-shell">[snoopy@localhost ~]$ su root　　#切换到root
+Password: 
+[root@localhost snoopy]# groupadd oinstall　　#创建用户组oinstall
+[root@localhost snoopy]# groupadd dba　　#创建用户组dba
+[root@localhost snoopy]# useradd -g oinstall -g dba -m oracle　　#创建oracle用户，并加入到oinstall和dba用户组
+[root@localhost snoopy]# passwd oracle　　#设置用户oracle的登陆密码，不设置密码，在CentOS的图形登陆界面没法登陆
+Changing password for user oracle.
+New password: 　　# 密码
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 　　# 确认密码
+passwd: all authentication tokens updated successfully.
+[root@localhost snoopy]# id oracle # 查看新建的oracle用户
+uid=1001(oracle) gid=1002(dba) groups=1002(dba)
+</code></pre>
+<blockquote>
+<p>为啥要创建oinstall用户组及dba组？ 参考：http://www.oracle.com/technetwork/cn/articles/hunter-rac11gr2-iscsi-2-092412-zhs.html#13</p>
+</blockquote>
+<p>理论上单例按照需要3种用户组，实际只建两个oinstall和dba，后面再安装oracle数据库的时候把OSOPER组也设置是dba组。</p>
+<pre><code class="language-shell">a.oracle 清单组（一般为oinstall):
+ OINSTALL 组的成员被视为 Oracle 软件的“所有者”，拥有对 Oracle 中央清单 (oraInventory) 的写入权限。在一个 Linux 系统上首次安装 Oracle 软件时， OUI 会创建 /etc/oraInst.loc 文件。该文件指定 Oracle 清单组的名称（默认为 oinstall）以及 Oracle 中央清单目录的路径。
+b.数据库管理员（OSDBA，一般为 dba）:
+ OSDBA 组的成员可通过操作系统身份验证使用 SQL 以 SYSDBA 身份连接到一个 Oracle 实例。该组的成员可执行关键的数据库管理任务，如创建数据库、启动和关
+ 闭实例。该组的默认名称为dba。SYSDBA 系统权限甚至在数据库未打开时也允许访问数据库实例。对此权限的控制完全超出了数据库本身的范围。不要混淆 SYSDBA 
+ 系统权限与数据库角色 DBA。DBA 角色不包括 SYSDBA 或 SYSOPER 系统权限。
+c.数据库操作员组（OSOPER，一般为 oper）:
+ OSOPER 组的成员可通过操作系统身份验证使用 SQL 以 SYSOPER 身份连接到一个 Oracle 实例。这个可选组的成员拥有一组有限的数据库管理权限，如管理和运行备份。
+ 该组的默认名称为oper。SYSOPER 系统权限甚至在数据库未打开时也允许访问数据库实例。对此权限的控制完全超出了数据库本身的范围。要使用该组，选择 Advanced 安装类型来安装 Oracle 数据库软件。 
+</code></pre>
+<h2 id="22-创建oracle数据库安装目录">2.2 创建oracle数据库安装目录</h2>
+<pre><code class="language-shell">[snoopy@localhost ~]$ su root
+Password: 
+[root@localhost snoopy]# mkdir -p /data/oracle　　# oracle数据库安装目录
+[root@localhost snoopy]# mkdir -p /data/oraInventory　　# oracle数据库配置文件目录
+[root@localhost snoopy]# mkdir -p /data/database　　# oracle数据库软件包解压目录
+[root@localhost snoopy]# cd /data
+[root@localhost data]# ls　　#创建完毕检查一下（强迫症）
+database  oracle  oraInventory
+[root@localhost data]# chown -R oracle:oinstall /data/oracle　　#设置目录所有者为oinstall用户组的oracle用户
+[root@localhost data]# chown -R oracle:oinstall /data/oraInventory
+[root@localhost data]# chown -R oracle:oinstall /data/database
+</code></pre>
+<h2 id="23-修改os系统标识">2.3 修改OS系统标识</h2>
+<pre><code class="language-shell">[root@localhost ~]# cat /proc/version 
+Linux version 3.10.0-1062.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-36) (GCC) ) #1 SMP Wed Aug 7 18:08:02 UTC 2019
+[root@localhost data]# cat /etc/redhat-release　　
+CentOS Linux release 7.7.1908 (Core) 
+[root@localhost data]# vi /etc/redhat-release
+[root@localhost data]# cat /etc/redhat-release 
+redhat-7 
+</code></pre>
+<h2 id="24-安装oracle数据库所需要的软件包">2.4 安装Oracle数据库所需要的软件包</h2>
+<pre><code class="language-shell">操作系统:Oracle Linux 7 and Red Hat Enterprise Linux 7
+The following packages (or later versions) must be installed:
+binutils-2.23.52.0.1-12.el7.x86_64 
+compat-libcap1-1.10-3.el7.x86_64 
+gcc-4.8.2-3.el7.x86_64 
+gcc-c++-4.8.2-3.el7.x86_64 
+glibc-2.17-36.el7.i686 
+glibc-2.17-36.el7.x86_64 
+glibc-devel-2.17-36.el7.i686 
+glibc-devel-2.17-36.el7.x86_64 
+ksh
+libaio-0.3.109-9.el7.i686 
+libaio-0.3.109-9.el7.x86_64 
+libaio-devel-0.3.109-9.el7.i686 
+libaio-devel-0.3.109-9.el7.x86_64 
+libgcc-4.8.2-3.el7.i686 
+libgcc-4.8.2-3.el7.x86_64 
+libstdc++-4.8.2-3.el7.i686 
+libstdc++-4.8.2-3.el7.x86_64 
+libstdc++-devel-4.8.2-3.el7.i686 
+libstdc++-devel-4.8.2-3.el7.x86_64 
+libXi-1.7.2-1.el7.i686 
+libXi-1.7.2-1.el7.x86_64 
+libXtst-1.2.2-1.el7.i686 
+libXtst-1.2.2-1.el7.x86_64 
+make-3.82-19.el7.x86_64 
+sysstat-10.1.5-1.el7.x86_64 
+</code></pre>
+<blockquote>
+<ol>
+<li>
+<p>yum install -y ksh binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel gcc gcc-c++ glibc glibc-common glibc-devel libaio libaio-devel libgcc libstdc++ libstdc++-devel make numactl sysstat libXp unixODBC unixODBC-devel</p>
+</li>
+<li>
+<p>若遇到无法安装pdksh，可以下载对应rpm包进行安装</p>
+</li>
+<li>
+<pre><code class="language-text">rpm -q binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel expat gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers libaio libaio-devel libgcc libstdc++ libstdc++-devel make pdksh sysstat unixODBC unixODBC-devel | grep &quot;not installed&quot;
+</code></pre>
+</li>
+</ol>
+</blockquote>
+<h2 id="25-关闭防火墙-关闭selinux">2.5 关闭防火墙、关闭selinux</h2>
+<pre><code class="language-shell">[root@localhost ~]# systemctl status firewalld.service # 查看防火墙状态
+[root@localhost ~]# systemctl stop firewalld.service # 关闭防火墙，防火墙先禁用，搞好之后再配置
+
+[root@localhost /]# vim /etc/selinux/config # 修改selinux配置文件
+[root@localhost /]# cat /etc/selinux/config
+ 
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+SELINUX=disabled   # 此处修改为disabled
+# SELINUXTYPE= can take one of three two values:
+#     targeted - Targeted processes are protected,
+#     minimum - Modification of targeted policy. Only selected processes are protected. 
+#     mls - Multi Level Security protection.
+SELINUXTYPE=targeted 
+
+[root@localhost ~]# setenforce 0 # 使配置生效
+</code></pre>
+<h2 id="26-修改内核参数">2.6 修改内核参数</h2>
+<pre><code class="language-shell">[root@localhost /]# vim /etc/sysctl.conf 
+[root@localhost /]# cat /etc/sysctl.conf 
+# System default settings live in /usr/lib/sysctl.d/00-system.conf.
+# To override those settings, enter new settings here, or in an /etc/sysctl.d/&lt;name&gt;.conf file
+#
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+# 添加以下参数：
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.conf.all.rp_filter = 1
+fs.file-max = 6815744 #设置最大打开文件数
+fs.aio-max-nr = 1048576
+kernel.shmall = 2097152 #共享内存的总量，8G内存设置：2097152*4k/1024/1024
+kernel.shmmax = 2147483648 #最大共享内存的段大小
+kernel.shmmni = 4096 #整个系统共享内存端的最大数
+kernel.sem = 250 32000 100 128
+net.ipv4.ip_local_port_range = 9000 65500 #可使用的IPv4端口范围
+net.core.rmem_default = 262144
+net.core.rmem_max= 4194304
+net.core.wmem_default= 262144
+net.core.wmem_max= 1048576
+使配置参数生效
+[root@localhost /]# sysctl -p
+</code></pre>
+<h2 id="27-对oracle用户设置限制提高软件运行性能">2.7 对oracle用户设置限制，提高软件运行性能</h2>
+<pre><code class="language-shell">[root@localhost /]# vim /etc/security/limits.conf 
+
+# 添加以下配置：
+oracle soft nproc 2047
+oracle hard nproc 16384
+oracle soft nofile 1024
+oracle hard nofile 65536  
+</code></pre>
+<h2 id="28-配置用户的环境变量">2.8 配置用户的环境变量</h2>
+<pre><code class="language-shell">[root@localhost /]# vim /home/oracle/.bash_profile 
+# 添加以下配置： 
+export ORACLE_BASE=/data/oracle #oracle数据库安装目录
+export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1 #oracle数据库路径
+export ORACLE_SID=orcl #oracle启动数据库实例名
+export ORACLE_TERM=xterm #xterm窗口模式安装
+export PATH=$ORACLE_HOME/bin:/usr/sbin:$PATH #添加系统环境变量
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib #添加系统环境变量
+export LANG=C #防止安装过程出现乱码
+export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK  #设置Oracle客户端字符集，必须与Oracle安装时设置的字符集保持一致，如：ZHS16GBK，否则出现数据导入导出中文乱码问题
+
+
+# 使上述配置生效
+[root@localhost /]# source /home/oracle/.bash_profile 
+</code></pre>
+<h2 id="29-解压安装包">2.9 解压安装包</h2>
+<pre><code class="language-shell">[oracle@localhost /]$ cd /usr/local/src　　#进入/usr/local/src目录
+[oracle@localhost src]$ ls	# 提前准备好的安装包文件
+linux.x64_11gR2_database_1of2.zip  linux.x64_11gR2_database_2of2.zip
+[oracle@localhost src]$ unzip linux.x64_11gR2_database_1of2.zip -d /data/database/　　#解压
+(省略...)
+[oracle@localhost src]$ unzip linux.x64_11gR2_database_2of2.zip -d /data/database/　　#解压
+(省略...)
+[oracle@localhost src]$ su root
+Password: 
+[root@localhost src]# chown -R oracle:oinstall /data/database/database/
+</code></pre>
+<h1 id="三-安装oracle图形化界面安装">三、安装Oracle（图形化界面安装）</h1>
+<h2 id="31-图形界面登陆oracle用户">3.1 图形界面登陆oracle用户：</h2>
+<h2 id="32-启动oralce安装">3.2 启动oralce安装</h2>
+<pre><code class="language-shell">[oracle@localhost ~]$ cd /data/database/database/
+[oracle@localhost ~]$ ./runInstaller
+</code></pre>
+<blockquote>
+<p>会弹出Oracle的安装图形化界面</p>
+</blockquote>
+<p>安装时遇到问题：</p>
+<ol>
+<li>swap空间不够问题</li>
+</ol>
+<blockquote>
+<p>要求大约在2.67G，实际上只有2G</p>
+</blockquote>
+<pre><code class="language-shell">[root@localhost ~]# free -m # 查看当前情况
+[root@localhost ~]# dd if=/dev/zero of=/home/swap bs=1024 count=1024000 # 由2048M扩展到3048M
+[root@localhost ~]# swapon /home/swap
+</code></pre>
+<ol start="2">
+<li>检查package</li>
+</ol>
+<p>之前没有安装的，此时安装，多检查几次</p>
+<p>3.3 配置监听</p>
+<pre><code class="language-shell">[oracle@localhost ~]$ netca 
+
+Oracle Net Services Configuration:
+Configuring Listener:LISTENER
+Listener configuration complete.
+Oracle Net Listener Startup:
+    Running Listener Control: 
+      /data/oracle/product/11.2.0/db_1/bin/lsnrctl start LISTENER
+    Listener Control complete.
+    Listener started successfully.
+Oracle Net Services configuration successful. The exit code is 0
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ CentOS 7 重启某个服务报错]]></title>
         <id>https://YaoyaoTsui.github.io/post/centos7重启某服务失败/</id>
