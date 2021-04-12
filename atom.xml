@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://YaoyaoTsui.github.io</id>
     <title>Tsui</title>
-    <updated>2021-04-12T07:05:46.039Z</updated>
+    <updated>2021-04-12T07:17:37.356Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://YaoyaoTsui.github.io"/>
     <link rel="self" href="https://YaoyaoTsui.github.io/atom.xml"/>
@@ -10,6 +10,202 @@
     <logo>https://YaoyaoTsui.github.io/images/avatar.png</logo>
     <icon>https://YaoyaoTsui.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Tsui</rights>
+    <entry>
+        <title type="html"><![CDATA[deepin下安装zsh]]></title>
+        <id>https://YaoyaoTsui.github.io/post/deepin_zsh_install/</id>
+        <link href="https://YaoyaoTsui.github.io/post/deepin_zsh_install/">
+        </link>
+        <updated>2021-04-12T07:07:58.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>参考文档：</p>
+<ol>
+<li>csdn Linux下安装zsh： https://blog.csdn.net/gatieme/article/details/52741221#t7</li>
+<li>zsh官方地址：https://www.zsh.org/</li>
+<li>github oh-my-zsh项目： https://github.com/ohmyzsh/ohmyzsh</li>
+<li>github oh-my-zsh主题介绍： https://github.com/ohmyzsh/ohmyzsh/wiki/themes</li>
+<li>github oh-my-zsh插件介绍：https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins</li>
+<li>github oh-my-zsh补充字体安装与配置： https://github.com/powerline/fonts</li>
+<li>zsh显示执行时间：https://note.pcwu.net/2017/03/25/zsh-theme-execution-time/</li>
+</ol>
+</blockquote>
+<p>大多数的Linux用户偏爱Bash，因为发行版通常默认的就是它。<br>
+Bash确实是不错的Shell，但仍有用很多不尽人意的地方，如自动补全的功能不够强大，定位较长路径不够方便，命令历史管理不够完善等。</p>
+<p>介绍使用zsh，功能十分强大..推荐给大家！</p>
+<h1 id="1-zsh介绍">1. zsh介绍</h1>
+<h2 id="11-linux-shell">1.1 Linux shell</h2>
+<p>Linux/Unix提供了很多种Shell，为毛要这么多Shell？</p>
+<p>难道用来炒着吃么？那我问你，你同类型的衣服怎么有那么多件？花色，质地还不一样。写程序比买衣服复杂多了，而且程序员往往负责把复杂的事情搞简单，简单的事情搞复杂。牛程序员看到不爽的Shell，就会自己重新写一套，慢慢形成了一些标准，常用的Shell有这么几种，sh、bash、csh等，想知道你的系统有几种shell，可以通过以下命令查看：</p>
+<pre><code class="language-shell">tsui@tsui-PC:~$ cat /etc/shells
+# /etc/shells: valid login shells
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/bin/dash
+/usr/bin/dash
+/bin/zsh
+/usr/bin/zsh
+</code></pre>
+<h2 id="12-zsh介绍">1.2 zsh介绍</h2>
+<p>Zsh是一个Linux下强大的shell, 由于大多数Linux产品安装，以及默认使用bash shell, 但是丝毫不影响极客们对zsh的热衷, 几乎每一款Linux产品都包含有zsh，通常可以用apt-get、urpmi或yum等包管理器进行安装</p>
+<p>Zsh具有以下主要功能</p>
+<ul>
+<li>
+<p>开箱即用、可编程的命令行补全功能可以帮助用户输入各种参数以及选项</p>
+</li>
+<li>
+<p>在用户启动的所有shell中共享命令历史</p>
+</li>
+<li>
+<p>通过扩展的文件通配符，可以不利用外部命令达到find命令一般展开文件名</p>
+</li>
+<li>
+<p>改进的变量与数组处理</p>
+</li>
+<li>
+<p>在缓冲区中编辑多行命令</p>
+</li>
+<li>
+<p>多种兼容模式，例如使用/bin/sh运行时可以伪装成Bourne shell</p>
+</li>
+<li>
+<p>可以定制呈现形式的提示符；包括在屏幕右端显示信息，并在键入长命令时自动隐藏</p>
+</li>
+<li>
+<p>可加载的模块，提供其他各种支持：完整的TCP与Unix域套接字控制，FTP客户端与扩充过的数学函数</p>
+</li>
+<li>
+<p>完全可定制化</p>
+</li>
+</ul>
+<h2 id="13-zsh与oh-my-zsh终极配置">1.3 zsh与oh-my-zsh终极配置</h2>
+<p>“工欲善其事，必先利其器”</p>
+<p>选择oh-my-zsh, oh-my-zsh是基于zsh的功能做了一个扩展，方便的插件管理、主题自定义，以及漂亮的自动完成效果。</p>
+<p>在Github上找关于zsh的项目时发现的，试用了一下觉得很方便，不用像上面文章里面提到的那么复杂，配置一些插件的名称即可使用相应的功能。</p>
+<pre><code>官网：https://github.com/robbyrussell/oh-my-zsh
+
+评价：https://github.com/robbyrussell/oh-my-zsh/wiki/Testimonials
+</code></pre>
+<h1 id="2-安装zsh">2. 安装zsh</h1>
+<h2 id="21-安装zsh">2.1 安装zsh</h2>
+<blockquote>
+<p>如果想配置oh-my-zsh，需要先安装zsh</p>
+</blockquote>
+<p>对于一般的Ubuntu系统，配置好正确的源之后，就能直接键入以下命令安装：</p>
+<pre><code class="language-shell">sudo apt-get install zsh
+</code></pre>
+<h2 id="22-配置zsh">2.2 配置zsh</h2>
+<p>zsh的配置是一门大学问，可以去网上找一些别人配置好的配置文件拿过来使用！</p>
+<p>把.zshrc拷贝到相应用户的home目录即可<br>
+(也可以把你的bash的配置文件(<code>~/.bash_prorile</code>或者<code>~/.profile</code>等)给拷贝到zsh的配置文件<code>~/.zshrc</code>里，因为zsh兼容bash)</p>
+<h2 id="23-取代bash将zsh设置为默认shell">2.3 取代bash，将zsh设置为默认shell</h2>
+<pre><code class="language-shell">sudo usermod -s /bin/zsh username
+或者
+chsh -s /bin/zsh
+如果切换回bash使用：
+chsh -s /bin/bash
+</code></pre>
+<p>当然你实在不愿意把zsh当成默认的shell, 而又想使用它, 那么你可以每次进入是都使用<code>zsh</code>进入, 而输入<code>exit</code>退出</p>
+<h2 id="24-安装oh-my-zsh">2.4 安装oh-my-zsh</h2>
+<p>直接用zsh会很蛋疼，因为zsh功能很强大但是太复杂，所以需要oh-my-zsh来将它简单化</p>
+<ol>
+<li>直接用git从github上面下载包</li>
+</ol>
+<pre><code>git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+</code></pre>
+<ol start="2">
+<li>备份已有的zshrc, 替换zshrc</li>
+</ol>
+<pre><code class="language-shell">cp ~/.zshrc ~/.zshrc.bak
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre>
+<ol start="3">
+<li>直接使用脚本安装</li>
+</ol>
+<pre><code class="language-shell">cd ~/.oh-my-zsh/tools
+./install.sh
+</code></pre>
+<blockquote>
+<p>需要将克隆下来的文件夹进行一个重命名，防止安装时文件夹名相同进行冲突！</p>
+</blockquote>
+<h2 id="25-配置oh-my-zsh">2.5 配置oh-my-zsh</h2>
+<h3 id="251-配置主题">2.5.1 配置主题</h3>
+<p>oh-my-zsh集成了大量的主题, 位于oh-my-zsh/theme</p>
+<p>配置主题, 可以通过修改<code>~/.zshrc</code>中的环境变量<code>ZSH_THEME</code>来完成</p>
+<pre><code class="language-shell">ZSH_THEME=&quot;agnoster&quot; # (this is one of the fancy ones)
+</code></pre>
+<p>如果你觉得主题太多你可以选择使用随机模式, 来由系统随机选择</p>
+<pre><code class="language-shell">ZSH_THEME=&quot;random&quot; # (...please let it be pie... please be some pie..)
+</code></pre>
+<h3 id="252-配置插件">2.5.2 配置插件</h3>
+<p>修改<code>~/.zshrc</code>中<code>plugins</code></p>
+<pre><code class="language-shell">plugins=(git bundler osx rake ruby)
+</code></pre>
+<blockquote>
+<p>详细插件信息，可以参照zsh插件Plugins介绍</p>
+</blockquote>
+<h3 id="253-字体配置">2.5.3 字体配置</h3>
+<p>安装完zsh之后，切换一些主题，会有一些字符不显示，这是因为系统字体库中没有这些符号的支持，所以我们要手动添加配置一些字体库。</p>
+<ul>
+<li>Powerline fonts 安装</li>
+</ul>
+<p>如果您正在运行基于Debian或Ubuntu的Linux发行版，则应使用以下命令提供一个软件包来安装Powerline字体：</p>
+<pre><code class="language-shell">sudo apt-get install fonts-powerline
+</code></pre>
+<ul>
+<li>字体配置</li>
+</ul>
+<p>在某些发行版中，默认情况下会忽略Terminess Powerline，并且必须明确允许它们。提供了一个fontconfig文件来启用它。<a href="https://github.com/powerline/fonts/blob/master/fontconfig/50-enable-terminess-powerline.conf">将此文件</a> 从fontconfig目录复制到您的主文件夹下<code>~/.config/fontconfig/conf.d</code> （如果不存在，请创建它）并重新运行<code>fc-cache -vf</code>。</p>
+<h3 id="254-配置执行时间">2.5.4 配置执行时间</h3>
+<p>修改需要修改的主题文件，以agnoster.zsh-theme主题为例：</p>
+<p>在文件中添加以下代码：</p>
+<pre><code class="language-shell">vim ~/.oh-my-zsh/themes/agnoster.zsh-theme
+
+# 添加配置
+function preexec() {
+  timer=${timer:-$SECONDS}
+}
+
+function precmd() {
+  if [ $timer ]; then
+    timer_show=$(($SECONDS - $timer))
+    if [[ $timer_show -ge $min_show_time ]]; then
+      RPROMPT='%{$fg_bold[red]%}(${timer_show}s)%f%{$fg_bold[white]%}[%*]%f'
+    else
+      RPROMPT='%{$fg_bold[white]%}[%*]%f'
+    fi
+    unset timer
+  fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec preexec
+add-zsh-hook precmd precmd
+</code></pre>
+<h2 id="26-更新oh-my-zsh">2.6 更新oh-my-zsh</h2>
+<ul>
+<li>默认情况下, 您将被提示检查每几周的升级. 如果你想我ZSH自动升级本身没有提示你, 修改<code>~/.zshrc</code></li>
+</ul>
+<pre><code class="language-shell">disable_update_prompt = true
+</code></pre>
+<ul>
+<li>禁用自动升级, 修改<code>~/.zshrc</code></li>
+</ul>
+<pre><code class="language-shell">disable_auto_update = true
+</code></pre>
+<ul>
+<li>当然你也可以选择手动更新</li>
+</ul>
+<p>如果你想在任何时间点升级（也许有人刚刚发布了一个新的插件，你不想等待一个星期？)你只需要运行：</p>
+<pre><code class="language-shell">upgrade_oh_my_zsh
+</code></pre>
+<h2 id="27-卸载oh-my-zsh">2.7 卸载oh-my-zsh</h2>
+<p>如果你想卸载<code>oh-my-zsh</code>, 只需要执行<code>uninstall_oh_my_zsh zsh</code>， 从命令行运行. 这将删除本身和恢复你以前的bash或者zsh配置.</p>
+<pre><code class="language-shell">uninstall_oh_my_zsh zsh
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Security Onion两种方式安装]]></title>
         <id>https://YaoyaoTsui.github.io/post/securityonion_install/</id>
