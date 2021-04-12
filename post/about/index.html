@@ -143,6 +143,9 @@
         
         
           
+        <li><a data-pjax href="https://YaoyaoTsui.github.io/friends">友链</a></li>
+
+        
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -251,7 +254,7 @@
         <a onclick="showAaplayer()"><i style="font-size: 20px;"><img
                     src='https://YaoyaoTsui.github.io/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         <div class="avatar-border">
-            <img src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618199288455" class="avatar">
+            <img src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618200703434" class="avatar">
         </div>
         <div class="sitename">Tsui</div>
         <span class="describtion" data-text='["不要假装努力，结果不会陪你演戏！"]'>&nbsp;</span>
@@ -313,6 +316,10 @@
     
     
     
+    <div class="mchocie describtion">
+        <a data-pjax href="https://YaoyaoTsui.github.io/friends" class="menubutton">友人帐</a>
+    </div>
+    
     <hr>
     <style>
     .copyright {
@@ -359,7 +366,7 @@
                 </div>
                 
             </div>
-            <div class="copyright" style="color:white;text-align: center;">Copyright © 2020  备案号: 苏ICP备520号
+            <div class="copyright" style="color:white;text-align: center;">Copyright © 2020  备案号: 苏ICP备18005779号-1号
             </div>
         </div>
 
@@ -436,8 +443,8 @@
         var ptitle = $("#ptitle").html();
         var rootaddr = $("#rootaddr").html();
         pl = pl.replace(rootaddr, "");
-        var appid = '';
-        var appkey = '';
+        var appid = 'saOw6t22NRM44ik9xytPtmWc-gzGzoHsz';
+        var appkey = 'vVoOikRQlTAStYYRXI6UB44g';
         console.log(appid, appkey)
         if (AV == undefined)
             AV.init({
@@ -604,7 +611,7 @@
                 <img src="' + talks[i].img + '" class="talkimg"> \
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618199288455">\
+                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618200703434">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
@@ -617,7 +624,7 @@
             <div class="talk" v-for="t in talks"> \
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618199288455">\
+                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618200703434">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
@@ -1104,7 +1111,53 @@
                     <div id="comment" class="comment" style="background: white">
                         <div class="commentcontainer">
                             
-                            <p>请到客户端“主题--自定义配置--valine”中填入ID和KEY</p>
+                            <style>
+    @media screen and (min-width: 1300px) {
+        .veditor::placeholder {
+            color: #b3b3b3;
+            font-size: 18px;
+            text-align: center;
+            line-height: 3rem;
+            font-family: kaiti;
+        }
+    }
+</style>
+
+<body>
+    <div id="vcomments">
+    </div>
+    <script src="https://YaoyaoTsui.github.io/media/js/valine.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var valine = new Valine();
+        var curpath = window.location.pathname;
+        if (curpath[curpath.length - 1] != '/')
+            curpath += '/'
+        valine.init({
+            el: '#vcomments',
+            appId: 'saOw6t22NRM44ik9xytPtmWc-gzGzoHsz',
+            appKey: 'vVoOikRQlTAStYYRXI6UB44g',
+            notify: true,
+            verify: false,
+            avatar: 'retro',
+            pageSize: 10,
+            placeholder: '既然来了，何不畅所欲言呢？',
+            visitor: true, // 阅读量统计
+            recordIP: true,
+            path: curpath //[重点] 记得添加path路径
+        });
+    </script>
+    <script type="text/javascript">
+        var jrsc = '既然来了，何不畅所欲言呢？';
+        jinrishici.load(function (result) {
+            // 自己的处理逻辑
+            jrsc = result.data.content + "\n「" + result.data.origin.title + "」" + result.data.origin
+                .dynasty + " · " + result.data.origin.author;
+        });
+    </script>
+
+</body>
+                            <div class="clear"></div>
                             
                         </div>
                     </div>
