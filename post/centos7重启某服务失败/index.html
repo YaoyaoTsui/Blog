@@ -208,12 +208,12 @@ Authorization not available. Check if polkit service is running or see debug mes
     
     
     <script>
-        let shareChoice = false
+        let shareChoice = true
     </script>
     
     
     <script>
-        let donateChoice = false
+        let donateChoice = true
     </script>
     
     
@@ -244,14 +244,14 @@ Authorization not available. Check if polkit service is running or see debug mes
         <a onclick="showAaplayer()"><i style="font-size: 20px;"><img
                     src='https://YaoyaoTsui.github.io/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         <div class="avatar-border">
-            <img src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618115561357" class="avatar">
+            <img src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618194627766" class="avatar">
         </div>
         <div class="sitename">Tsui</div>
         <span class="describtion" data-text='["不要假装努力，结果不会陪你演戏！"]'>&nbsp;</span>
         
         <div class="search">
             <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
-            <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+            <input type="text" class="search-input" placeholder="搜索 ⚆_⚆ つ♡">
             <div class="search-results"></div>
         </div>
         
@@ -334,8 +334,22 @@ Authorization not available. Check if polkit service is running or see debug mes
                 href="https://github.com/850552586/gridea-theme-fog">Fog</a>
             <div>
                 
+                <div id="sitegotimeDate">载入天数...</div>
+                <div id="sitegotimes">载入时分秒...</div>
+                <div id="cussitetime" style="display:none">04/10/2021</div>
+                
             </div>
             <div>
+                
+                <script async
+                    src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/busuanzi.pure.mini.js"></script>
+                <div id="vistornum" style="margin:0">
+                    <span id="busuanzi_container_site_uv">
+                        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i> 总访问量:<span
+                            id="busuanzi_value_site_pv"></span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="fa fa-user-o" aria-hidden="true"></i> 访问人数:<span id="busuanzi_value_site_uv"></span>
+                    </span>
+                </div>
                 
             </div>
             <div class="copyright" style="color:white;text-align: center;">Copyright © 2020  备案号: 苏ICP备520号
@@ -346,6 +360,38 @@ Authorization not available. Check if polkit service is running or see debug mes
 
     </div>
 </body>
+
+<script>
+    //----------------------站点运行时间
+    var now = new Date();
+
+    function createtime() {
+        var sitegotime = document.getElementById("cussitetime").innerHTML + " 00:00:00";
+        var grt = new Date(sitegotime); //此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime() + 250);
+        days = (now - grt) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if (String(hnum).length == 1) {
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if (String(mnum).length == 1) {
+            mnum = "0" + mnum;
+        }
+        seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if (String(snum).length == 1) {
+            snum = "0" + snum;
+        }
+        document.getElementById("sitegotimeDate").innerHTML = "本站已安全运行 " + dnum + " 天 ";
+        document.getElementById("sitegotimes").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+
+    let intervalId = setInterval("createtime()", 250);
+</script>
 
     </div>
 
@@ -551,7 +597,7 @@ Authorization not available. Check if polkit service is running or see debug mes
                 <img src="' + talks[i].img + '" class="talkimg"> \
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618115561357">\
+                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618194627766">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
@@ -564,7 +610,7 @@ Authorization not available. Check if polkit service is running or see debug mes
             <div class="talk" v-for="t in talks"> \
                 <div class="ainfo">\
                     <div class="ainfo-intro">\
-                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618115561357">\
+                        <img class="intro1" src="https://YaoyaoTsui.github.io/images/avatar.png?v=1618194627766">\
                         <div class="author">' + talks[i].author + '</div>·\
                         <div class="time">' + talks[i].time + '</div>\
                     </div>\
@@ -931,7 +977,7 @@ Authorization not available. Check if polkit service is running or see debug mes
             
             <div class="postdetailimg">
                 
-                <img src="https://wall.alphacoders.com/big.php?i=78016" class="postimage">
+                <img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/linux3-1920x1080.jpg" class="postimage">
                 
             </div>
             <div class="postinfo-detail">
@@ -1023,6 +1069,35 @@ rpm -Va polkit\* &amp;&amp; echo -e &quot;\e[1;32mpolkit* rpm verification passe
             </div>
             <hr style="width: 80%;">
             
+            <div class="sharebtnContainer">
+                <button type="button" class="sharebtn">转载分享</button>
+            </div>
+            <div class="shareContainer">
+                <div class="share" style="height:30px;background: white;">
+                    <a class="qq" href=""><i><img class="shareicon"
+                                src="https://YaoyaoTsui.github.io/media/images/QQ.png" alt=""></i></a>
+                    <a class="wechat" href=""><i><img class="shareicon"
+                                src="https://YaoyaoTsui.github.io/media/images/wechat.png" alt=""></i></a>
+                    <a class="weibo" href=""><i><img class="shareicon"
+                                src="https://YaoyaoTsui.github.io/media/images/weibo.png" alt=""></i></a>
+                    <a class="qzone" href=""><i><img class="shareicon"
+                                src="https://YaoyaoTsui.github.io/media/images/qzone.png" alt=""></i></a>
+                    <a class="douban" href=""><i><img class="shareicon"
+                                src="https://YaoyaoTsui.github.io/media/images/douban.png" alt=""></i></a>
+                    <a class="facebook" href=""><i><img class="shareicon"
+                                src="https://YaoyaoTsui.github.io/media/images/facebook.png" alt=""></i></a>
+                    <a class="twitter" href=""><i><img class="shareicon"
+                                src="https://YaoyaoTsui.github.io/media/images/twitter.png" alt=""></i></a>
+                </div>
+            </div>
+            
+            
+            <div class="donateContainer">
+                <img src="https://YaoyaoTsui.github.io/media/images/donate.png" alt="" class="donateImg">
+            </div>
+            <div class="donateContainer">
+                <img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/wechat-%E6%94%B6%E9%92%B1%E7%A0%81.jpg" alt="" class="donate">
+            </div>
             
             <div class="postfooter">
                 <ul class="post-copyright">
@@ -1143,7 +1218,7 @@ rpm -Va polkit\* &amp;&amp; echo -e &quot;\e[1;32mpolkit* rpm verification passe
     <div id="bgchoice" style="display: none">link
     </div>
     
-    <div id="bgurl" style="display:none">https://wall.alphacoders.com/big.php?i=78016</div>
+    <div id="bgurl" style="display:none">https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/linux9.jpg</div>
     
 </body>
 <script>
