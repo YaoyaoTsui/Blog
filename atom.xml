@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://yaoyaotsui.github.io</id>
+    <id>https://YaoyaoTsui.github.io</id>
     <title>Tsui</title>
-    <updated>2021-05-06T06:27:07.170Z</updated>
+    <updated>2021-05-06T06:32:21.995Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://yaoyaotsui.github.io"/>
-    <link rel="self" href="https://yaoyaotsui.github.io/atom.xml"/>
+    <link rel="alternate" href="https://YaoyaoTsui.github.io"/>
+    <link rel="self" href="https://YaoyaoTsui.github.io/atom.xml"/>
     <subtitle>不要假装努力，结果不会陪你演戏！</subtitle>
-    <logo>https://yaoyaotsui.github.io/images/avatar.png</logo>
-    <icon>https://yaoyaotsui.github.io/favicon.ico</icon>
+    <logo>https://YaoyaoTsui.github.io/images/avatar.png</logo>
+    <icon>https://YaoyaoTsui.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Tsui</rights>
     <entry>
         <title type="html"><![CDATA[解决Exsi创建虚拟机无法远程问题]]></title>
-        <id>https://yaoyaotsui.github.io/post/Resolve_remoteaccess/</id>
-        <link href="https://yaoyaotsui.github.io/post/Resolve_remoteaccess/">
+        <id>https://YaoyaoTsui.github.io/post/Resolve_remoteaccess/</id>
+        <link href="https://YaoyaoTsui.github.io/post/Resolve_remoteaccess/">
         </link>
         <updated>2021-05-06T05:37:41.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -28,8 +28,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 7 根目录扩容（lvm）]]></title>
-        <id>https://yaoyaotsui.github.io/post/CentOS7_lvm_extend/</id>
-        <link href="https://yaoyaotsui.github.io/post/CentOS7_lvm_extend/">
+        <id>https://YaoyaoTsui.github.io/post/CentOS7_lvm_extend/</id>
+        <link href="https://YaoyaoTsui.github.io/post/CentOS7_lvm_extend/">
         </link>
         <updated>2021-04-30T06:20:42.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -224,8 +224,8 @@ WARNING: xfs signature detected on /dev/sda3 at offset 0. Wipe it? [y/n]: y
     </entry>
     <entry>
         <title type="html"><![CDATA[deepin下安装zsh]]></title>
-        <id>https://yaoyaotsui.github.io/post/deepin_zsh_install/</id>
-        <link href="https://yaoyaotsui.github.io/post/deepin_zsh_install/">
+        <id>https://YaoyaoTsui.github.io/post/deepin_zsh_install/</id>
+        <link href="https://YaoyaoTsui.github.io/post/deepin_zsh_install/">
         </link>
         <updated>2021-04-12T07:07:58.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -420,8 +420,8 @@ add-zsh-hook precmd precmd
     </entry>
     <entry>
         <title type="html"><![CDATA[Security Onion两种方式安装]]></title>
-        <id>https://yaoyaotsui.github.io/post/securityonion_install/</id>
-        <link href="https://yaoyaotsui.github.io/post/securityonion_install/">
+        <id>https://YaoyaoTsui.github.io/post/securityonion_install/</id>
+        <link href="https://YaoyaoTsui.github.io/post/securityonion_install/">
         </link>
         <updated>2021-04-12T06:49:40.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -564,8 +564,8 @@ kernel.watchdog_thresh=30
     </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 7装Oracle11gR2]]></title>
-        <id>https://yaoyaotsui.github.io/post/centos-7-zhuang-oracle11gr2/</id>
-        <link href="https://yaoyaotsui.github.io/post/centos-7-zhuang-oracle11gr2/">
+        <id>https://YaoyaoTsui.github.io/post/centos-7-zhuang-oracle11gr2/</id>
+        <link href="https://YaoyaoTsui.github.io/post/centos-7-zhuang-oracle11gr2/">
         </link>
         <updated>2021-04-12T04:41:45.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-环境支持">一、环境支持</h1>
@@ -796,8 +796,8 @@ Oracle Net Services configuration successful. The exit code is 0
     </entry>
     <entry>
         <title type="html"><![CDATA[ CentOS 7 重启某个服务报错]]></title>
-        <id>https://yaoyaotsui.github.io/post/centos7重启某服务失败/</id>
-        <link href="https://yaoyaotsui.github.io/post/centos7重启某服务失败/">
+        <id>https://YaoyaoTsui.github.io/post/centos7重启某服务失败/</id>
+        <link href="https://YaoyaoTsui.github.io/post/centos7重启某服务失败/">
         </link>
         <updated>2021-04-10T16:06:03.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
