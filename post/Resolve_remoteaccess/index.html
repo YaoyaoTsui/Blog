@@ -1,23 +1,22 @@
 
 <html>
   <head lang="zh">
-       <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>Tsui</title>
+    <title>解决Exsi创建虚拟机无法远程问题 | Tsui</title>
 <link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/basic.js"></script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
-
   </head>
 
   <body>
-    <div class="header">
+     <div class="header">
       <div class="logo_title">
 		  
         <div class="title animated fadeInDown"><img src="https://yaoyaotsui.github.io/images/avatar.png?v=1620281523027"/>
@@ -132,37 +131,94 @@
 
     </div>
 
+
     <div class="main">
       <div class="main-inner">
 
 
 <div class="content">
-  <div class="list_with_title">
 
- <div class="tags-container">
-            <a class="tag" href="https://yaoyaotsui.github.io/tag/系统运维/">系统运维</a>
-          
-            <a class="tag" href="https://yaoyaotsui.github.io/tag/Linux/">Linux</a>
-          
-            <a class="tag" href="https://yaoyaotsui.github.io/tag/SecurityOnion/">SecurityOnion</a>
-          
-            <a class="tag" href="https://yaoyaotsui.github.io/tag/Oracle/">Oracle</a>
-          
- </div>
- 
 
+
+
+
+
+  <div class="post_page" >
+
+<div class="post">
+  <div class="post_title sm_margin">
+    <h2><a>解决Exsi创建虚拟机无法远程问题</a>
+
+
+
+    </h2>
+  </div>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2021-05-06</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://yaoyaotsui.github.io/tag/系统运维/" class="tag">系统运维</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><blockquote>
+<p>在Exsi中创建虚拟机做测试，Esxi版本是6.5，虚拟机系统是Win Server 2012，已手动分配ip，和使用物理机是同网段地址。问题：无法远程访问</p>
+</blockquote>
+<h1 id="问题分析">问题分析：</h1>
+<p>在为其安装好系统之后，无法使用物理机进行远程访问，大多数原因是网络不通、防火墙拒绝访问、远程设置未开启等，在排查之后，原因是远程设置未开启导致的无法远程访问。</p>
+<h1 id="问题解决">问题解决：</h1>
+<p>打开设置-系统和安全-远程设置，将“远程桌面”选项中，设置为“允许远程连接到此计算机”，并取消勾选“仅循序运行使用网络级别身份验证的远程桌面计算机连接”，应用保存，测试访问，OK！解决！</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/winserver2012%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E8%AE%BE%E7%BD%AE.png" alt="" loading="lazy"></figure>
+</p>
+
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://yaoyaotsui.github.io/media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://yaoyaotsui.github.io/media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
+
+</div>
+
+
+
+<link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
+
+<div class="doc_comments">
+
+</div>
 
 
 
   </div>
-
 </div>
 
 
 
       </div>
 
+
+
+
     </div>
+
    <div class="footer">
 <link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
 
@@ -257,7 +313,6 @@ a.back_to_top:hover span {
 })(this));
 </script>
 
- 
 </body>
 
 </html>

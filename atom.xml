@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yaoyaotsui.github.io</id>
     <title>Tsui</title>
-    <updated>2021-04-30T06:55:20.328Z</updated>
+    <updated>2021-05-06T06:12:23.098Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yaoyaotsui.github.io"/>
     <link rel="self" href="https://yaoyaotsui.github.io/atom.xml"/>
@@ -10,6 +10,22 @@
     <logo>https://yaoyaotsui.github.io/images/avatar.png</logo>
     <icon>https://yaoyaotsui.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Tsui</rights>
+    <entry>
+        <title type="html"><![CDATA[解决Exsi创建虚拟机无法远程问题]]></title>
+        <id>https://yaoyaotsui.github.io/post/Resolve_remoteaccess/</id>
+        <link href="https://yaoyaotsui.github.io/post/Resolve_remoteaccess/">
+        </link>
+        <updated>2021-05-06T05:37:41.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>在Exsi中创建虚拟机做测试，Esxi版本是6.5，虚拟机系统是Win Server 2012，已手动分配ip，和使用物理机是同网段地址。问题：无法远程访问</p>
+</blockquote>
+<h1 id="问题分析">问题分析：</h1>
+<p>在为其安装好系统之后，无法使用物理机进行远程访问，大多数原因是网络不通、防火墙拒绝访问、远程设置未开启等，在排查之后，原因是远程设置未开启导致的无法远程访问。</p>
+<h1 id="问题解决">问题解决：</h1>
+<p>打开设置-系统和安全-远程设置，将“远程桌面”选项中，设置为“允许远程连接到此计算机”，并取消勾选“仅循序运行使用网络级别身份验证的远程桌面计算机连接”，应用保存，测试访问，OK！解决！</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/winserver2012%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE%E8%AE%BE%E7%BD%AE.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 7 根目录扩容（lvm）]]></title>
         <id>https://yaoyaotsui.github.io/post/CentOS7_lvm_extend/</id>
