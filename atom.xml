@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yaoyaotsui.github.io</id>
     <title>一杯美式</title>
-    <updated>2021-05-27T06:46:43.958Z</updated>
+    <updated>2021-05-27T08:37:42.177Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yaoyaotsui.github.io"/>
     <link rel="self" href="https://yaoyaotsui.github.io/atom.xml"/>
@@ -10,6 +10,45 @@
     <logo>https://yaoyaotsui.github.io/images/avatar.png</logo>
     <icon>https://yaoyaotsui.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 一杯美式</rights>
+    <entry>
+        <title type="html"><![CDATA[Navicat for MySQL 15注册激活]]></title>
+        <id>https://yaoyaotsui.github.io/post/Navicat15_activation/</id>
+        <link href="https://yaoyaotsui.github.io/post/Navicat15_activation/">
+        </link>
+        <updated>2021-05-27T08:36:38.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li>下载Navicat for MySQL 15</li>
+</ul>
+<pre><code>https://www.navicat.com.cn/download/navicat-for-mysql # 下载地址
+</code></pre>
+<ul>
+<li>下载激活工具</li>
+</ul>
+<pre><code>链接：https://pan.baidu.com/s/1XrIrh9e-efbyyFrjS80_WQ 
+提取码：hobq
+</code></pre>
+<ul>
+<li>安装Mavicat，按步骤安装即可，安装完毕后先不要打开软件，<strong>断开网络连接</strong>，将激活工具复制到Navicat安装路径下，以管理员身份运行。在弹出界面选择Navicat 15 Products选择MySQL，Languages选择Simplefied Chinese 点击Patch，如下：</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E6%89%93%E5%BC%80%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7.png" alt="" loading="lazy"></figure>
+<ul>
+<li>打开Navicat，点击注册</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/Navicat%E6%B3%A8%E5%86%8C%E7%95%8C%E9%9D%A2.png" alt="" loading="lazy"></figure>
+<ul>
+<li>返回到激活工具界面，点击Generate会自动填写注册码到软件输入框</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E6%89%8B%E5%8A%A8%E6%BF%80%E6%B4%BB.png" alt="" loading="lazy"></figure>
+<ul>
+<li>在点击激活按钮，点击手动激活</li>
+</ul>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E6%89%8B%E5%8A%A8%E6%BF%80%E6%B4%BB.png" alt="" loading="lazy"></figure>
+<ul>
+<li>将请求码复制到激活工具的文本框中，点击Generate激活码会自动填写到Navicat激活码文本框中，点击激活即可。</li>
+</ul>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E8%AF%B7%E6%B1%82%E7%A0%81%E6%BF%80%E6%B4%BB.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 7 安装非最新版MySQL]]></title>
         <id>https://yaoyaotsui.github.io/post/centos7_installmysql5.7/</id>

@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title> CentOS 7 重启某个服务报错 | 一杯美式</title>
+    <title>Navicat for MySQL 15注册激活 | 一杯美式</title>
 <link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a> CentOS 7 重启某个服务报错</a>
+    <h2><a>Navicat for MySQL 15注册激活</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-04-11</span>
+<span class="date_info">2021-05-27</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,7 +165,7 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
-	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
+	<a href="https://yaoyaotsui.github.io/tag/系统运维/" class="tag">系统运维</a>
 
 
 </span>
@@ -180,67 +180,37 @@
 
 
   <div class="post_content markdown"><p class="md_block">
-    <span class="md_line md_line_start md_line_end"><blockquote>
-<p>错误信息：<br>
-Authorization not available. Check if polkit service is running or see debug message for more information.<br>
-参考链接：<br>
-https://www.icode9.com/content-3-715773.html<br>
-https://access.redhat.com/solutions/1543343</p>
-</blockquote>
-<p>解决方案：</p>
-<ol>
-<li>根据提示查看polkit状态</li>
-</ol>
-<pre><code>systemctl status polkit
+    <span class="md_line md_line_start md_line_end"><ul>
+<li>下载Navicat for MySQL 15</li>
+</ul>
+<pre><code>https://www.navicat.com.cn/download/navicat-for-mysql # 下载地址
 </code></pre>
-<blockquote>
-<p>如果发现polkit的状态是faild，检查系统已安装polkit并手动启动它</p>
-</blockquote>
-<ol start="2">
-<li>检查是否安装了polkit</li>
-</ol>
-<pre><code class="language-shell">yum list installed | grep polkit
+<ul>
+<li>下载激活工具</li>
+</ul>
+<pre><code>链接：https://pan.baidu.com/s/1XrIrh9e-efbyyFrjS80_WQ 
+提取码：hobq
 </code></pre>
-<ol start="3">
-<li>安装 polkit</li>
-</ol>
-<pre><code class="language-shell">yum install polkit
-</code></pre>
-<ol start="4">
-<li>启动polkit</li>
-</ol>
-<pre><code class="language-shell">systemctl start polkit
-</code></pre>
-<blockquote>
-<p>手动启动仍然是此错误，那么执行以下操作！</p>
-</blockquote>
-<ol start="5">
-<li><strong>确保存在<code>polkitd</code>系统用户和组</strong></li>
-</ol>
-<pre><code class="language-shell"># 将以下2个复合命令复制/粘贴到终端以检查并有条件地创建用户/组
-getent group polkitd &gt;/dev/null &amp;&amp; echo -e &quot;\e[1;32mpolkitd group already exists\e[0m&quot; || { groupadd -r polkitd &amp;&amp; echo -e &quot;\e[1;33mAdded missing polkitd group\e[0m&quot; || echo -e &quot;\e[1;31mAdding polkitd group FAILED\e[0m&quot;; }
-getent passwd polkitd &gt;/dev/null &amp;&amp; echo -e &quot;\e[1;32mpolkitd user already exists\e[0m&quot; || { useradd -r -g polkitd -d / -s /sbin/nologin -c &quot;User for polkitd&quot; polkitd &amp;&amp; echo -e &quot;\e[1;33mAdded missing polkitd user\e[0m&quot; || echo -e &quot;\e[1;31mAdding polkitd user FAILED\e[0m&quot;; }
-</code></pre>
-<ol start="6">
-<li><strong>重置<code>polkit</code>和<code>polkit-pkla-compat</code>程序包提供的所有文件的权限和用户/组所有权</strong></li>
-</ol>
-<pre><code class="language-shell"># 将以下命令复制/粘贴到终端，以检查并有条件地重置用户/组权限和所有权
-
-rpm -Va polkit\* &amp;&amp; echo -e &quot;\e[1;32mpolkit* rpm verification passed\e[0m&quot; || { echo -e &quot;\e[1;33mResetting polkit* rpm user/group ownership &amp; perms\e[0m&quot;; rpm --setugids polkit polkit-pkla-compat; rpm --setperms polkit polkit-pkla-compat; }
-</code></pre>
-<ol start="7">
-<li>重启系统</li>
-</ol>
-<pre><code>reboot
-</code></pre>
-<p>再次重启服务，OK！</p>
-<p>补充：</p>
-<blockquote>
-<p>polkit是一个应用程序级别的工具集，通过定义和审核权限规则，实现不同优先级进程间的通讯。</p>
-<p>控制决策集中在同一的框架之中，决定低优先级进程是否有权访问高优先级进程</p>
-<p>polkit在系统层级进行权限控制，提供了一个低优先级进程和高优先级进程进行通信的系统</p>
-<p>在使用systemcd 225的时候会有这类错误异常bug，但是到systemd 229的时候修复了。错误原因是当systemd启动了这个服务的时候policykit -1的postions杀掉了polkit的守护进程。在RHEL,CentOS,ubuntu,debain系统上均可以看到相关bug报告反馈。</p>
-</blockquote>
+<ul>
+<li>安装Mavicat，按步骤安装即可，安装完毕后先不要打开软件，<strong>断开网络连接</strong>，将激活工具复制到Navicat安装路径下，以管理员身份运行。在弹出界面选择Navicat 15 Products选择MySQL，Languages选择Simplefied Chinese 点击Patch，如下：</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E6%89%93%E5%BC%80%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7.png" alt="" loading="lazy"></figure>
+<ul>
+<li>打开Navicat，点击注册</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/Navicat%E6%B3%A8%E5%86%8C%E7%95%8C%E9%9D%A2.png" alt="" loading="lazy"></figure>
+<ul>
+<li>返回到激活工具界面，点击Generate会自动填写注册码到软件输入框</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E6%89%8B%E5%8A%A8%E6%BF%80%E6%B4%BB.png" alt="" loading="lazy"></figure>
+<ul>
+<li>在点击激活按钮，点击手动激活</li>
+</ul>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E6%89%8B%E5%8A%A8%E6%BF%80%E6%B4%BB.png" alt="" loading="lazy"></figure>
+<ul>
+<li>将请求码复制到激活工具的文本框中，点击Generate激活码会自动填写到Navicat激活码文本框中，点击激活即可。</li>
+</ul>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E8%AF%B7%E6%B1%82%E7%A0%81%E6%BF%80%E6%B4%BB.png" alt="" loading="lazy"></figure>
 </p>
 
      <p class="md_block">
