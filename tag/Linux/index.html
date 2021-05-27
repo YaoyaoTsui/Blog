@@ -19,7 +19,7 @@
     <div class="header">
       <div class="logo_title">
 		  
-        <div class="title animated fadeInDown"><img src="https://yaoyaotsui.github.io/images/avatar.png?v=1622105340324"/>
+        <div class="title animated fadeInDown"><img src="https://yaoyaotsui.github.io/images/avatar.png?v=1622105801939"/>
 
           <h1 title="一杯美式" class="weaklink"><a href="/">一杯美式</a>
 
@@ -143,114 +143,6 @@
 
 
   <div class="post_list" >
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://yaoyaotsui.github.io/post/centos7_installmysql5.7/" >CentOS 7 安装非最新版MySQL</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p><blockquote>
-<p>版本版本：CentOS Linux release 7.9.2009 (Core)<br>
-内核版本：3.10.0-1160.24.1.el7.x86_64<br>
-截至写稿前，MySQL已经更新到MySQL8.0版本，但是在实际生产环境中，有工作者不需要安装最新版，而是安装一些之前版本的稳定版，例如MySQL5.7.<br>
-本文就以在CentOS 7.9系统上安装MySQL 5.7。<br>
-若要安装非最新版本的mysql，则需要下载对应的rpm包，使用此方式进行安装。</p>
-</blockquote>
-<h1 id="一-mysql-yum存储库">一、MySQL Yum存储库</h1>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/yum%E5%AD%98%E5%82%A8%E5%BA%93mysql.png" alt="" loading="lazy"></figure>
-<h2 id="11-下载mysql-yum存储库">1.1 下载MySQL Yum存储库</h2>
-<p>MySQL Yum存储库提供了一种简单方便的方法，可以使用Yum使用最新的软件包来安装和更新MySQL产品。</p>
-<p>默认情况下，下面提供的存储库软件包将提供MySQL Server 8.0。通过编辑软件包安装的回购设置文件可以获得其他版本。</p>
-<ol>
-<li>转到<code>https://dev.mysql.com/downloads/repo/yum/</code>上的MySQL Yum存储库的下载页面，下载对应版本的存储库，然后上传至Linux系统中 。</li>
-<li>选择并下载适用于您平台的发行包，下载对应版本的存储库，然后上传至Linux系统中 。。</li>
-<li>也可以直接在Linux终端下执行：<code>wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm</code>进行下载</li>
-</ol>
-<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/mysql_%E4%B8%8B%E8%BD%BDyum%E5%8C%85.png" alt="" loading="lazy"></figure>
-<h2 id="12-添加存储库">1.2 添加存储库</h2>
-<ol>
-<li>使用以下命令安装下载的发行包：</li>
-</ol>
-<pre><code class="language-shell">shell&gt; rpm -Uvh mysql80-community-release-el7-3.noarch.rpm
-</code></pre>
-<blockquote>
-<p>一旦在系统上安装了发行包，通过<strong>yum update</strong> 命令进行的所有系统范围内的更新（或对于启用dnf的系统进行dnf<strong>升级</strong>）都将自动升级系统上的MySQL软件包，并且还会替换任何本机的第三方软件包（如果有的话）在MySQL Yum存储库中找到它们的替代品。</p>
-</blockquote>
-<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/mysql_%E5%AE%89%E8%A3%85yum%E5%8C%85.png" alt="" loading="lazy"></figure>
-<p>查找要配置的子存储库的条目，然后编辑<code>enabled</code>选项。指定 <code>enabled=0</code>禁用子存储库或 <code>enabled=1</code>启用子存储库。例如，要安装MySQL 5.7，请确保您具有<code>enabled=0</code>上面针对MySQL 8.0的子存储库条目，并且具有 <code>enabled=1</code>针对5.7系列的条目：</p>
-<p>您应该随时只为一个发行系列启用子存储库。如果启用了多个发行系列的子存储库，那么Yum将使用最新的系列。</p>
-<pre><code class="language-shell">shell&gt; yum repolist enabled | grep mysql
-vim /etc/yum.repos.d/mysql-community.repo
-# Enable to use MySQL 5.7
-[mysql57-community]
-name=MySQL 5.7 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
-enabled=1	# 我需要安装5.7版本，所以这里改成1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-
-[mysql80-community]
-name=MySQL 8.0 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/7/$basearch/
-enabled=0	# 禁用掉8.0版本
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-</code></pre>
-<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/mysql_%E4%BF%AE%E6%94%B9yum%E5%8C%85%E6%96%87%E4%BB%B6.png" alt="" loading="lazy"></figure>
-<h1 id="二-安装mysql">二、安装MySQL</h1>
-<h2 id="21-安装mysql">2.1 安装MySQL</h2>
-<pre><code class="language-shell">shell&gt; yum install mysql-community-server	# 将安装MySQL服务器的软件包以及其他必需的软件包。
-</code></pre>
-<h2 id="22-启动mysql">2.2 启动MySQL</h2>
-<pre><code class="language-shell">shell&gt; systemctl start mysqld
-shell&gt; systemctl status mysqld
-shell&gt; systemctl enable mysqld
-</code></pre>
-<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/mysql_%E5%90%AF%E5%8A%A8mysql.png" alt="" loading="lazy"></figure>
-<h1 id="三-mysql服务器初始化">三、MySQL服务器初始化</h1>
-<p>自MySQL 5.7起：在服务器初次启动时，假定服务器的数据目录为空，则会发生以下情况：</p>
-<ul>
-<li>服务器已初始化。</li>
-<li>SSL证书和密钥文件在数据目录中生成。</li>
-<li>该<a href="https://dev.mysql.com/doc/refman/8.0/en/validate-password.html">validate_password插件</a>安装并启用。</li>
-<li><code>'root'@'localhost'</code> 创建 一个超级用户帐户。设置超级用户的密码并将其存储在错误日志文件中。要显示它，请使用以下命令：</li>
-</ul>
-<h2 id="31-获取root初始密码">3.1 获取root初始密码</h2>
-<pre><code class="language-shell">shell&gt; grep 'temporary password' /var/log/mysqld.log
-</code></pre>
-<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/mysql_%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81.png" alt="" loading="lazy"></figure>
-<h2 id="32-修改root密码">3.2 修改root密码</h2>
-<p>通过使用生成的临时密码登录并尽快更改超级用户帐户的root密码，以更改root密码：</p>
-<pre><code class="language-shell">shell&gt; mysql -uroot -p
-mysql&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';	# 修改root密码
-</code></pre>
-<blockquote>
-<p>MySQL的 <a href="https://dev.mysql.com/doc/refman/8.0/en/validate-password.html">validate_password</a> 插件是默认安装的。这将要求密码至少包含一个大写字母，一个小写字母，一位数字和一个特殊字符，并且密码总长度至少为8个字符。</p>
-</blockquote>
-<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/mysql_%E4%BF%AE%E6%94%B9root%E5%AF%86.png" alt="" loading="lazy"></figure>
-</p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-05-27</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
 
 	
 <div class="post">
