@@ -1,12 +1,12 @@
 
 <html>
-<head lang="zh">
+  <head lang="zh">
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
         <meta content="yes" name="apple-mobile-web-app-capable"/>
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>一杯美式</title>
+    <title>CentOS 7 安装非最新版MySQL | 一杯美式</title>
 <link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/basic.js"></script>
@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <div class="header">
+     <div class="header">
       <div class="logo_title">
 		  
         <div class="title animated fadeInDown"><img src="https://yaoyaotsui.github.io/images/avatar.png?v=1622097455919"/>
@@ -135,6 +135,7 @@
     <div class="main">
       <div class="main-inner">
 
+
 <div class="content">
 
 
@@ -142,15 +143,44 @@
 
 
 
-  <div class="post_list" >
+  <div class="post_page" >
 
-	
 <div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://yaoyaotsui.github.io/post/centos7_installmysql5.7/" >CentOS 7 安装非最新版MySQL</a>
+  <div class="post_title sm_margin">
+    <h2><a>CentOS 7 安装非最新版MySQL</a>
+
+
+
     </h2>
   </div>
-  <div class="post_content markdown"><div class="p_part"><p><blockquote>
+
+  <div class="post_details">
+    <div class="info"><i class="fa fa-clock-o"></i>
+<span class="date_info">2021-05-27</span>
+<i class="fa fa-eye"></i>
+
+<span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
+
+
+<i class="fa fa-bookmark-o"></i>
+<span class="tags_info weaklink">
+	
+	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
+
+
+</span>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <div class="post_content markdown"><p class="md_block">
+    <span class="md_line md_line_start md_line_end"><blockquote>
 <p>版本版本：CentOS Linux release 7.9.2009 (Core)<br>
 内核版本：3.10.0-1160.24.1.el7.x86_64<br>
 截至写稿前，MySQL已经更新到MySQL8.0版本，但是在实际生产环境中，有工作者不需要安装最新版，而是安装一些之前版本的稳定版，例如MySQL5.7.<br>
@@ -229,155 +259,24 @@ mysql&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';	# 修改roo
 <p>MySQL的 <a href="https://dev.mysql.com/doc/refman/8.0/en/validate-password.html">validate_password</a> 插件是默认安装的。这将要求密码至少包含一个大写字母，一个小写字母，一位数字和一个特殊字符，并且密码总长度至少为8个字符。</p>
 </blockquote>
 <figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/mysql_%E4%BF%AE%E6%94%B9root%E5%AF%86.png" alt="" loading="lazy"></figure>
-</p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-05-27</span>
+<!-- more -->
+<blockquote>
+<p>至此，mysql5.7已经安装并初始化完毕，例如创建用户、授权、数据库相关操作后续可根据需求进行！</p>
+</blockquote>
+</p>
 
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
+     <p class="md_block">
+    <div class="reward"><div class="reward-button">赏 <span class="reward-code"> <span class="alipay-code"> <img class="alipay-img" src="https://yaoyaotsui.github.io/media/images/alipay.png"><b>支付宝扫码打赏</b> </span> <span class="wechat-code"> <img class="wechat-img" src="https://yaoyaotsui.github.io/media/images/wechat.png"><b>微信打赏</b> </span> </span></div></div>
+</p> 
+</div>
 
 </div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://yaoyaotsui.github.io/post/passwd_root/" >破解Linux系统root密码</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-05-26</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
 
 
 
-</span>
+<link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
 
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://yaoyaotsui.github.io/post/CentOS7_lvm_extend/" >CentOS 7 根目录扩容（lvm）</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-04-30</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://yaoyaotsui.github.io/post/deepin_zsh_install/" >deepin下安装zsh</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-04-12</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://yaoyaotsui.github.io/post/centos7重启某服务失败/" > CentOS 7 重启某个服务报错</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-04-11</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-	
-
-<div class="paginator pager pagination" >
-	
-
-
-
-    <div style="clear:both;height:0;"></div>
-
-
-  </div>
+<div class="doc_comments">
 
 </div>
 
@@ -390,9 +289,12 @@ mysql&gt; ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';	# 修改roo
 
       </div>
 
+
+
+
     </div>
 
-    <div class="footer">
+   <div class="footer">
 <link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
 
       <div class="mysocials"><div class="my_socials">

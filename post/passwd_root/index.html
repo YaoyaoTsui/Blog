@@ -6,7 +6,7 @@
         <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
         <meta content="telephone=no" name="format-detection"/>
         <meta name="renderer" content="webkit">
-    <title>关于 | 一杯美式</title>
+    <title>破解Linux系统root密码 | 一杯美式</title>
 <link href="https://yaoyaotsui.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/jquery.js"></script>
 <script type="text/javascript" src="https://yaoyaotsui.github.io/media/scripts/basic.js"></script>
@@ -147,7 +147,7 @@
 
 <div class="post">
   <div class="post_title sm_margin">
-    <h2><a>关于</a>
+    <h2><a>破解Linux系统root密码</a>
 
 
 
@@ -156,7 +156,7 @@
 
   <div class="post_details">
     <div class="info"><i class="fa fa-clock-o"></i>
-<span class="date_info">2021-04-10</span>
+<span class="date_info">2021-05-26</span>
 <i class="fa fa-eye"></i>
 
 <span class="date_info"><span id="busuanzi_value_page_pv"></span> Views</span>
@@ -165,6 +165,8 @@
 <i class="fa fa-bookmark-o"></i>
 <span class="tags_info weaklink">
 	
+	<a href="https://yaoyaotsui.github.io/tag/Linux/" class="tag">Linux</a>
+
 
 </span>
 
@@ -179,18 +181,67 @@
 
   <div class="post_content markdown"><p class="md_block">
     <span class="md_line md_line_start md_line_end"><blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！我就是一个小人物🤝</p>
+<p>以CentOS 7 为例<br>
+系统版本：CentOS Linux release 7.2.1511 (Core)<br>
+内核版本：Linux 3.10.0-327.el7.x86_64 x86_64</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>2021.04.10新的开始！<br>
-主要记录下自己在学习以及工作当中遇到的问题，想法！没什么技术含量，就是方便自己查找、复习回顾！<br>
-在此之前，我通过购买服务器、域名自己搭建过博客网站，但是由于某些原因（<s>就是没钱</s>），没能坚持下去，还丢了很多的资料笔记（<s>就是没备份</s>），后来又在其他博客平台上记录过自己的学习过程，但是不太喜欢。所以，最终选择了以<strong>Gridea+Markdown+Github</strong>的方式来记录我学习的点点滴滴！（<s>什么玩意儿～就是因为免费！！！</s>）</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>帅气无比的Tsui呀～可以叫我小人物！</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>爱好广泛，欢迎了解</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>https://github.com/YaoyaoTsui/</p>
+<p>不管是在实际生产环境中还是在自己学习中，都会遇到root密码忘记的情况，重装系统虽然简单，但是数据是无价的，这个时候就需要将root密码破解掉，所有的事情就将迎刃而解；出于安全考虑，既然你会破解root密码，那么其他人也会，则会降低自己系统或者服务器的安全性，我们可以做root反破解密码策略，来增强我们的安全性。</p>
+<h1 id="一-模式介绍">一、模式介绍</h1>
+<h2 id="11-单用户模式">1.1 单用户模式</h2>
+<p>Linux下的启动方式常用的到的有单用户方式、普通多用户方式、完全多用户方式和XWin方式。单用户方式下，系统并没有完全运行进来，只是部分程序运行，这时也不能进行远程登录到Linux系统。进入单用户方式进行系统维护由是ROOT用户来进行完成，而且是由ROOT直接的进入，没有密码检验。这时的ROOT用户对系统有完全的操作权限，可以修复系统的同时，也能随时的对系统进行破坏。</p>
+<h2 id="12-救援模式">1.2 救援模式</h2>
+<p>当我们在Linux操作系统中因为误操作删除了某些重要文件导致大部分命令的不能使用或者某些程序不能使用时，此时就可以借助Linux的救援模式临时进入系统，进行文件修改，纠正错误。注意救援模式的本质其实只是一个带shell的Linux运行环境，借助它可以通过mount和chroot进入要修复的系统。</p>
+<h1 id="二-破解root密码">二、破解root密码</h1>
+<h2 id="21-进入单用户模式">2.1 进入单用户模式</h2>
+<ul>
+<li>
+<p>开机等待，进入gurb界面，按“e”进入内核启动界面</p>
+</li>
+<li>
+<p>按方向键，找到linux16那行，并在尾部添加参数 rd.break，并按ctrl+x</p>
+<p>此时系统会重启，待系统重启完毕后，将进入单用户模式</p>
+<blockquote>
+<p>如果使用init=/bin/sh，则使用<code>mount -o remount,rw /</code>进行挂载</p>
+</blockquote>
+</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/Linux16%E5%8A%A0rd.break.png" alt="" loading="lazy"></figure>
+<h2 id="22-破解密码">2.2 破解密码</h2>
+<ul>
+<li>挂载系统盘，转到/sysroot</li>
+</ul>
+<pre><code class="language-shell">mount -o remount,rw /sysroot		# 重新挂载，使其可写
+chroot /sysroot		# 进入系统环境
+</code></pre>
+<ul>
+<li>设置密码</li>
+</ul>
+<pre><code class="language-shell">LANG=en  # 修改语系变量，这样在改密码的时候就不会出现雪花啦，我之前的操作都是带雪花的我以为我修改成功了，可反反复复好几次破解都失败，就是报错信息变成雪花了
+passwd root	# 按提示更改密码即可！
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/%E4%BF%AE%E6%94%B9%E5%87%BA%E9%94%99.png" alt="" loading="lazy"></figure>
+<blockquote>
+<p>在实际操作的过程中，修改root密码失败，起初以为是弱密码导致的，后又换成强密码仍旧失败，就开始找解决方案，只要执行以下命令再次更改密码即可解决！</p>
+<pre><code>chattr -i /etc/passwd
+chattr -i /etc/shadow
+</code></pre>
+</blockquote>
+<img src="https://raw.githubusercontent.com/YaoyaoTsui/FigureBed/main/img/root%E5%AF%86%E7%A0%81_%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F.png" style="zoom:80%;" />
+<ul>
+<li>创建文件使selinux生效</li>
+</ul>
+<pre><code class="language-shell">load_policy -i
+chcon -t shadow_t /etc/selinux
+touch /.autorelabel 	# selinux相关，不创建无法开机
+</code></pre>
+<ul>
+<li>重启系统</li>
+</ul>
+<pre><code>exit
+reboot
+</code></pre>
+<h2 id="23-验证新密码">2.3 验证新密码</h2>
+<p>重启完成后，正常进入系统，输入用户名和我们新修改的密码，登录系统即可！</p>
 </p>
 
      <p class="md_block">
