@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yaoyaotsui.github.io</id>
     <title>一杯美式</title>
-    <updated>2021-05-27T09:00:07.483Z</updated>
+    <updated>2021-06-04T01:28:24.360Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yaoyaotsui.github.io"/>
     <link rel="self" href="https://yaoyaotsui.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://yaoyaotsui.github.io/images/avatar.png</logo>
     <icon>https://yaoyaotsui.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 一杯美式</rights>
+    <entry>
+        <title type="html"><![CDATA[如何使win自带软件开机自启]]></title>
+        <id>https://yaoyaotsui.github.io/post/ru-he-shi-win-zi-dai-ruan-jian-kai-ji-zi-qi/</id>
+        <link href="https://yaoyaotsui.github.io/post/ru-he-shi-win-zi-dai-ruan-jian-kai-ji-zi-qi/">
+        </link>
+        <updated>2021-06-04T01:24:15.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>创建软件的快捷方式</li>
+<li>win+R，打开运行对话框，输入<code>shell:startup</code>，回车启动</li>
+<li>执行命令后自动打开Windows的启动文件夹</li>
+<li>将需要开机自启的快捷方式拷贝到这个目录下，OK，搞定！</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CentOS 7 安装非最新版MySQL]]></title>
         <id>https://yaoyaotsui.github.io/post/centos-7-an-zhuang-fei-zui-xin-ban-mysql/</id>
